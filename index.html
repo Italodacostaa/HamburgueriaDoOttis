@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/paginaPrincipal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Hamburgueria do Ottis</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="./assets/imagens/logo.png" alt="Logo Hamburgueria do Ottis">
+            </a>
+            <nav class="nav-principal">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="cardapio.html">Cardápio</a></li>
+                    <li><a href="index.html#sobre-nos">Sobre Nós</a></li>
+                    <li><a href="index.html#reservas">Reservas</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                    <li class="nav-item-login-mobile"><a href="#" class="btn btn-login-mobile" id="btnCabecalhoLoginMobile">Login</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-acoes-desktop">
+                <a href="#" class="btn btn-login-desktop" id="btnCabecalhoLoginDesktop">Login</a>
+                <a href="#" class="btn btn-carrinho" id="abrirCarrinhoBtnDesktop" aria-label="Abrir Carrinho de Compras">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="contador-carrinho-desktop" class="contador-carrinho">0</span>
+                </a>
+            </div>
+
+            <div class="header-mobile-actions">
+                <a href="#" class="btn btn-carrinho" id="abrirCarrinhoBtnMobile" aria-label="Abrir Carrinho de Compras">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="contador-carrinho-mobile" class="contador-carrinho">0</span>
+                </a>
+                <div class="menu-hamburguer">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero js-scroll" id="hero">
+        <div class="container">
+            <div class="left-content">
+                <h1>O <span>Melhor</span> Burger Chegou!</h1>
+                <p>Experimente a explosão de sabores que só Hamburgueria do Ottis pode oferecer. Feito com paixão e os melhores ingredientes.</p>
+                <a href="cardapio.html" class="btn">Ver Cardápio</a>
+            </div>
+        </div>
+    </section>
+
+    </section> 
+    
+    <section class="destaques-cardapio js-scroll" id="destaques-cardapio">
+        <div class="container">
+            <h2>Nossos <span>Destaques</span></h2>
+            <p class="subtitulo">Conheça os hambúrgueres que conquistaram o coração (e o paladar) dos nossos clientes!</p>
+            
+            <div class="destaques-grid">
+                <div class="destaque-item">
+                    <img src="./assets/imagens/classico.jpg" alt="Burger Clássico do Ottis">
+                    <h3>Clássico do Ottis</h3>
+                    <p>Nosso tradicional blend de carnes, queijo cheddar, alface, tomate, picles e o molho especial do Ottis.</p>
+                    <span class="preco">R$ 29,90</span>
+                    <button class="btn btn-adicionar-carrinho" data-id="burger-classico" data-nome="Burger Clássico" data-preco="29.90">Adicionar ao Carrinho</button>
+                </div>
+
+                <div class="destaque-item">
+                    <img src="./assets/imagens/bacon-duplo2.jpg" alt="Bacon Lover Burger">
+                    <h3>Ottis Duplo Bacon</h3>
+                    <p>Para os amantes de bacon: suculento hambúrguer, queijo provolone e fatias generosas de bacon crocante.</p>
+                    <span class="preco">R$ 34,90</span>
+                    <button class="btn btn-adicionar-carrinho" data-id="burger-bacon" data-nome="Bacon Lover Burger" data-preco="34.90">Adicionar ao Carrinho</button>
+                </div>
+
+                <div class="destaque-item">
+                    <img src="./assets/imagens/vegano2.jpg" alt="Veggie Delight Burger">
+                    <h3>Ottis Vegano</h3>
+                    <p>Uma opção deliciosa para todos: hambúrguer de grão de bico, cream cheese vegano, rúcula e tomate seco.</p>
+                    <span class="preco">R$ 28,50</span>
+                    <button class="btn btn-adicionar-carrinho" data-id="burger-vegano" data-nome="Veggie Delight Burger" data-preco="28.50">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sobre-nos js-scroll" id="sobre-nos">
+        <div class="container">
+            <div class="sobre-nos-conteudo">
+                <div class="sobre-nos-texto">
+                    <h2>Nossa <span>História</span></h2>
+                    <p class="subtitulo">Sabor, paixão e tradição em cada mordida.</p>
+                    <p>A Hamburgueria do Ottis nasceu de um sonho simples: transformar a paixão por hambúrgueres artesanais em uma experiência inesquecível para todos. Começamos pequenos, com uma chapa e uma receita secreta, no coração de Fortaleza. Cada hambúrguer era preparado com o carinho e a dedicação que só quem ama o que faz pode oferecer.</p>
+                    <p>Com o tempo, o aroma dos nossos burgers começou a atrair cada vez mais pessoas, e o que era um sonho virou realidade. Hoje, a Hamburgueria do Ottis é sinônimo de **qualidade, inovação e o verdadeiro sabor do hambúrguer perfeito**. Usamos apenas os melhores ingredientes, carnes selecionadas, pães fresquinhos e molhos que são a nossa marca registrada.</p>
+                    <p class="slogan">**Hamburgueria do Ottis: Onde cada burger conta uma história de sabor.**</p>
+                    <a href="cardapio.html" class="btn btn-secundario">Conheça Nosso Cardápio</a>
+                </div>
+                <div class="sobre-nos-imagem">
+                    <img src="./assets/imagens/local.webp" alt="Interior da Hamburgueria do Ottis, chapa com hambúrgueres">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="depoimentos js-scroll" id="depoimentos">
+        <div class="container">
+            <h2>O que nossos <span>Clientes Dizem</span></h2>
+            <p class="subtitulo">A satisfação dos nossos clientes é o nosso maior tempero!</p>
+            
+            <div class="depoimentos-grid">
+                <div class="depoimento-item">
+                    <img src="./assets/imagens/pessoa.webp" alt="Foto de Maria Silva" class="depoimento-avatar">
+                    <p class="depoimento-texto">"Simplesmente o melhor hambúrguer que já comi em Fortaleza! A carne é suculenta, o pão é fresco e o molho especial é divino. Virei cliente fiel!"</p>
+                    <p class="depoimento-autor">- Maria Silva, Amante de Burgers</p>
+                    <div class="depoimento-estrelas">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="depoimento-item">
+                    <img src="./assets/imagens/pessoa.webp" alt="Foto de João Oliveira" class="depoimento-avatar">
+                    <p class="depoimento-texto">"Atendimento impecável e o burger vegetariano é uma explosão de sabor! Fiquei impressionado com a qualidade e as opções para todos os gostos. Recomendo demais!"</p>
+                    <p class="depoimento-autor">- João Oliveira, Cliente Satisfeito</p>
+                    <div class="depoimento-estrelas">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="depoimento-item">
+                    <img src="./assets/imagens/pessoa.webp" alt="Foto de Ana Costa" class="depoimento-avatar">
+                    <p class="depoimento-texto">"Ambiente super agradável e um milkshake de Nutella de outro mundo! Os hambúrgueres são fora de série, com ingredientes frescos e um sabor autêntico. Nota 10!"</p>
+                    <p class="depoimento-autor">- Ana Costa, Fã de Milkshakes</p>
+                    <div class="depoimento-estrelas">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section js-scroll" id="cta-section">
+        <div class="container">
+            <h2>Pronto para <span>Sua Experiência Ottis?</span></h2>
+            <p class="subtitulo">Escolha como você quer saborear o melhor burger da cidade!</p>
+            
+            <div class="cta-grid">
+                <div class="cta-item">
+                    <i class="fas fa-burger fa-3x"></i> <h3>Faça Seu Pedido Online</h3>
+                    <p>Peça seus favoritos diretamente pelo nosso site e receba em casa com agilidade.</p>
+                    <a href="cardapio.html" class="btn">Ver Cardápio</a>
+                </div>
+
+                <div class="cta-item">
+                    <i class="fas fa-calendar-alt fa-3x"></i> <h3>Faça Sua Reserva Online</h3>
+                    <p>Garanta seu lugar e evite filas! Perfeito para encontros e celebrações.</p>
+                    <a href="#reservas" class="btn btn-secundario" id="btnFazerReserva">Reservar Mesa</a> </div>
+
+                <div class="cta-item">
+                    <i class="fas fa-map-marker-alt fa-3x"></i> <h3>Visite Nossa Loja Fisica</h3>
+                    <p>Venha nos conhecer e desfrute do ambiente acolhedor da Hamburgueria do Ottis.</p>
+                    <a href="#localizacao-feedback" class="btn">Como Chegar</a> </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reservas-section js-scroll" id="reservas">
+        <div class="container">
+            <div class="reservas-conteudo">
+                <div class="reservas-texto">
+                    <h2>Faça Sua <span>Reserva</span></h2>
+                    <p>Garanta sua mesa na Hamburgueria do Ottis e desfrute de uma experiência deliciosa sem esperas!</p>
+                    <p>Preencha o formulário ao lado e aguarde a confirmação.</p>
+                    <div class="reservas-contato-info">
+                        <p><i class="fas fa-phone"></i> (85) 99999-9999</p>
+                        <p><i class="fas fa-clock"></i> Ter - Dom: 18h - 23h</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Rua Rangel Pestana, 1259, Sapiranga - Fortaleza, CE</p>
+                    </div>
+                </div>
+                <div class="reservas-formulario">
+                    <form id="formReserva">
+                        <div class="form-grupo">
+                            <label for="nomeReserva">Nome:</label>
+                            <input type="text" id="nomeReserva" name="nome" required placeholder="Nome Completo">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="emailReserva">Email:</label>
+                            <input type="email" id="emailReserva" name="email" required placeholder="seu@email.com">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="telefoneReserva">Telefone:</label>
+                            <input type="tel" id="telefoneReserva" name="telefone" required placeholder="(85) 9XXXX-XXXX">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="dataReserva">Data:</label>
+                            <input type="date" id="dataReserva" name="data" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="horaReserva">Hora:</label>
+                            <input type="time" id="horaReserva" name="hora" required>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="pessoasReserva">Número de Pessoas:</label>
+                            <select id="pessoasReserva" name="pessoas" required>
+                                <option value="" disabled selected>Selecione</option>
+                                <option value="1">1 Pessoa</option>
+                                <option value="2">2 Pessoas</option>
+                                <option value="3">3 Pessoas</option>
+                                <option value="4">4 Pessoas</option>
+                                <option value="5">5 Pessoas</option>
+                                <option value="6">6+ Pessoas</option>
+                            </select>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="observacoesReserva">Observações (opcional):</label>
+                            <textarea id="observacoesReserva" name="observacoes" rows="4" placeholder="Alguma preferência ou restrição alimentar?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary-alt">Confirmar Reserva</button>
+                        <div id="mensagemReserva" class="mensagem-reserva"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-logo">
+                <img src="./assets/imagens/logo.png" alt="Hamburgueria do Ottis">
+                <p>&copy; 2025 Hamburgueria do Ottis. Todos os direitos reservados.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="index.html#hero">Início</a></li>
+                    <li><a href="cardapio.html">Cardápio</a></li>
+                    <li><a href="index.html#sobre-nos">Sobre Nós</a></li>
+                    <li><a href="index.html#depoimentos">Depoimentos</a></li>
+                    <li><a href="#reservas">Faça Sua Reserva</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contato" id="contato">
+                <h3>Contato</h3>
+                <p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Rua+Rangel+Pestana,+1259,+Sapiranga+-+Fortaleza,+CE" target="_blank" rel="noopener noreferrer" aria-label="Localização no Google Maps">
+                        <i class="fas fa-map-marker-alt"></i> Rua Rangel Pestana, 1259, Sapiranga - Fortaleza, CE
+                    </a>
+                </p>
+                <p>
+                    <a href="https://wa.me/5585999999999?text=Ol%C3%A1,%20gostaria%20de%20fazer%20um%20pedido%20ou%20tirar%20uma%20d%C3%BAvida!" target="_blank" rel="noopener noreferrer" aria-label="Contatar via WhatsApp">
+                        <i class="fab fa-whatsapp"></i> (85) 99999-9999 (WhatsApp)
+                    </a>
+                </p>
+                <p>
+                    <a href="mailto:Ottis@gmail.com" aria-label="Enviar e-mail para Ottis">
+                        <i class="fas fa-envelope"></i> Ottis@gmail.com
+                    </a>
+                </p>
+            </div>
+
+            <div class="footer-social">
+                <h3>Siga-nos</h3>
+                <div class="social-icons">
+                    <a href="https://facebook.com/seuperfil" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/seuperfil" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/seuperfil" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://wa.me/5585999999999?text=Ol%C3%A1,%20gostaria%20de%20fazer%20um%20pedido%20ou%20tirar%20uma%20d%C3%BAvida!" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Desenvolvido por <a href="https://github.com/Italodacostaa">Italo Costa</a></p>
+        </div>
+    </footer>
+
+
+    <div class="carrinho-modal" id="carrinhoModal">
+        <div class="carrinho-conteudo">
+            <span class="fechar-carrinho" id="fecharCarrinhoBtn">&times;</span>
+            <h2>Seu Carrinho</h2>
+            <div class="itens-carrinho" id="itensCarrinho">
+                <p class="carrinho-vazio">Seu carrinho está vazio. Adicione alguns itens!</p>
+            </div>
+            <div class="carrinho-resumo">
+                <p>Total: <span id="carrinhoTotal">R$ 0,00</span></p>
+                <button class="btn btn-finalizar-pedido">Finalizar Pedido</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    
+    <script src="./assets/js/PaginaPrincipal.js"></script>
+    <script src="./assets/js/carrinho.js"></script>
+</body>
+</html>

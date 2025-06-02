@@ -1,0 +1,1744 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif; /* Usando Montserrat como fonte padrão */
+    background-color: #ffffff; /* Um fundo levemente acinzentado */
+    color: #333; /* Cor de texto padrão */
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada no body */
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #fff;
+    padding-bottom: 28px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Uma sombra sutil */
+    top: 0;
+    z-index: 100; /* Garante que o cabeçalho fique acima de outros elementos */
+    height: 6rem;
+    position: relative;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between; /* AGORA SEPARA LOGO, NAV E AÇÕES */
+    align-items: center;
+    height: 150%;
+    /* Remova o padding-bottom: 28px; do header e adicione um padding horizontal aqui */
+    padding: 0 20px; /* Adiciona padding dos lados para não colar nas bordas */
+}
+
+header .logo img {
+    height: 7rem; /* Ajuste a altura do logo conforme necessário */
+    width: auto; /* Mantém a proporção */
+    max-width: 150px; /* Define uma largura máxima */
+    margin-right: 430px; /* Alinha o logo à esquerda */
+}
+
+nav {
+    display: flex;
+    /* justify-content: flex-end !important; -- REMOVIDO */
+    /* padding-bottom: 15px; -- REMOVIDO */
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li:first-child {
+    margin-left: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a:focus { /* Adicionado estilo de foco */
+    color: #e63946;
+}
+
+/* --- Ações do Cabeçalho para Desktop --- */
+.header-acoes-desktop {
+    display: flex; /* Visível por padrão em desktop */
+    align-items: center;
+    gap: 20px; /* Espaço entre o Login e o Carrinho */
+}
+
+/* --- Esconda as Ações Mobile e o Hambúrguer em Desktop --- */
+.header-mobile-actions {
+    display: none; /* Escondido por padrão em desktop */
+}
+
+/* Esconda o item de Login da navegação mobile por padrão (ele só aparece em mobile) */
+.nav-principal .nav-item-login-mobile {
+    display: none;
+}
+
+/* Estilos para o botão de Login (tanto desktop quanto mobile) */
+.btn-login-desktop,
+.btn-login-mobile {
+    background-color: transparent; /* Fundo transparente */
+    border: none; /* SEM BORDA */
+    color: #555; /* Cor cinza similar ao texto do Login, igual ao carrinho */
+    padding: 8px 12px; /* Ajuste o padding para ser compacto, igual ao carrinho */
+    border-radius: 5px;
+    font-size: 1.2em; /* Tamanho do ícone, igual ao carrinho */
+    transition: all 0.3s ease;
+    display: flex; /* Para alinhar o ícone e o texto, se houver */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    min-width: 40px; /* Largura mínima, um pouco menor que o carrinho se não tiver contador */
+    cursor: pointer;
+    text-decoration: none; /* Remove sublinhado de links */
+}
+
+/* Efeito de hover para os botões de Login */
+.btn-login-desktop:hover,
+.btn-login-mobile:hover {
+    background-color: transparent;
+    color: #e63946; /* Cor de destaque no hover (vermelho), igual ao carrinho */
+    transform: translateY(-2px);
+    box-shadow: none; /* Sem sombra no hover, igual ao carrinho */
+}
+
+/* --- Estilos do Modal de Login --- */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fica no lugar */
+    z-index: 200; /* Fica por cima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita rolagem se necessário */
+    background-color: rgba(0,0,0,0.6); /* Preto com opacidade */
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudo-modal {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; /* Usando Montserrat para o texto do formulário */
+}
+
+.conteudo-modal h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.conteudo-modal .btn-fechar {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.conteudo-modal .btn-fechar:hover,
+.conteudo-modal .btn-fechar:focus {
+    color: #e63946;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.grupo-input {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.grupo-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.grupo-input input[type="text"],
+.grupo-input input[type="password"] {
+    width: calc(100% - 20px); /* Ajusta para o padding */
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.conteudo-modal .btn {
+    background-color: #e63946;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-family: 'Luckiest Guy', cursive;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.conteudo-modal .btn:hover {
+    background-color: #c0303e;
+}
+
+.link-cadastro {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.link-cadastro a {
+    color: #e63946;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link-cadastro a:hover {
+    text-decoration: underline;
+}
+
+/* Garante que o ícone de usuário seja estilizado corretamente */
+#btnCabecalhoLogin .fas.fa-user {
+    font-size: 1.5rem; /* Ajuste o tamanho conforme necessário */
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+#btnCabecalhoLogin:hover .fas.fa-user {
+    color: #e63946;
+}
+
+/* --- Estilos do Modal (genéricos para login e cadastro) --- */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fica no lugar */
+    z-index: 200; /* Fica por cima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita rolagem se necessário */
+    background-color: rgba(0,0,0,0.6); /* Preto com opacidade */
+    justify-content: center;
+    align-items: center;
+    -webkit-overflow-scrolling: touch; /* Melhora a rolagem em iOS */
+}
+
+.conteudo-modal {
+    background-color: #fefefe;
+    margin: auto; /* Centraliza vertical e horizontalmente */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 450px; /* Aumentar um pouco a largura máxima para o cadastro */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    transform: translateY(0); /* Estado inicial para transição */
+    transition: transform 0.3s ease-out;
+}
+
+/* Animação para quando o modal abre */
+.modal.aberto .conteudo-modal {
+    transform: translateY(0);
+}
+
+.conteudo-modal h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.conteudo-modal .btn-fechar {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 201; /* Garante que o botão de fechar fique por cima */
+}
+
+.conteudo-modal .btn-fechar:hover,
+.conteudo-modal .btn-fechar:focus {
+    color: #e63946;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.grupo-input {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.grupo-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.grupo-input input[type="text"],
+.grupo-input input[type="email"],
+.grupo-input input[type="tel"], /* Adicionado tipo tel para telefone */
+.grupo-input input[type="password"] {
+    width: calc(100% - 20px); /* Ajusta para o padding */
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.conteudo-modal .btn {
+    background-color: #e63946;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-family: 'Luckiest Guy', cursive;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    display: inline-block;
+    width: 100%; /* Botão com largura total */
+}
+
+.conteudo-modal .btn:hover {
+    background-color: #c0303e;
+}
+
+/* Links dentro dos modais */
+.link-cadastro, .link-voltar-login {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.link-cadastro a, .link-voltar-login a {
+    color: #e63946;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link-cadastro a:hover, .link-voltar-login a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* --- Estilos para o Botão do Carrinho (.btn-carrinho) --- */
+.btn-carrinho {
+    padding: 8px 12px;
+    background-color: transparent;
+    color: #555;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.5rem; /* Ajusta o tamanho do ícone */
+    transition: color 0.3s ease;
+}
+
+.btn-carrinho:hover {
+    background-color: transparent;
+    color: #e63946;
+    transform: translateY(-2px);
+    box-shadow: none;
+}
+
+/* --- Estilos para o Contador de Itens no Carrinho (Mantém como está) --- */
+.contador-carrinho {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #e63946;
+    color: white;
+    font-size: 0.7em;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 3px 6px;
+    min-width: 18px;
+    text-align: center;
+    line-height: 1.2;
+    display: none;
+    border: 1px solid white;
+}
+
+/* Opcional: Estilo de animação para o contador (pequeno "bounce") */
+.contador-carrinho.animar {
+    animation: bounceIn 0.5s ease-out;
+}
+/* Ajusta cabeçalho e navegação para novos elementos */
+header .logo {
+    z-index: 201; /* Mantém o logo acima de modais/barras laterais se necessário */
+}
+
+
+.carrinho-modal {
+    /* Oculto por padrão, visível via JavaScript */
+    display: none; 
+    position: fixed; /* Fixa na tela, independente da rolagem */
+    z-index: 1000; /* Garante que fique acima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semitransparente */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    overflow: auto; /* Permite rolagem se o conteúdo for muito grande */
+    padding: 20px; /* Padding para telas menores */
+}
+
+.carrinho-conteudo {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 90%; /* Largura padrão */
+    max-width: 500px; /* Largura máxima para desktop */
+    animation: fadeInScale 0.3s ease-out; /* Animação ao abrir */
+}
+
+.carrinho-conteudo h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-family: 'Luckiest Guy', cursive; /* Mantém a fonte divertida */
+    font-size: 2.2em;
+}
+
+.fechar-carrinho {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.fechar-carrinho:hover,
+.fechar-carrinho:focus {
+    color: #e63946; /* Cor de destaque ao passar o mouse */
+    text-decoration: none;
+}
+
+.itens-carrinho {
+    max-height: 300px; /* Altura máxima para rolagem dos itens */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
+    margin-bottom: 20px;
+    padding-right: 5px; /* Espaço para a barra de rolagem */
+}
+
+.carrinho-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee; /* Linha tracejada entre os itens */
+}
+
+.carrinho-item:last-child {
+    border-bottom: none; /* Remove a borda do último item */
+}
+
+.carrinho-item-info h4 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.carrinho-item-info p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    color: #888;
+}
+
+.carrinho-item-controles {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre os controles */
+}
+
+.btn-quantidade {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.btn-quantidade:hover {
+    background-color: #ddd;
+}
+
+.carrinho-item-controles .quantidade {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.preco-item {
+    font-weight: bold;
+    color: #e63946; /* Cor de destaque para o preço total do item */
+    min-width: 80px; /* Garante espaço para o preço */
+    text-align: right;
+}
+
+.btn-remover {
+    background-color: #f44336; /* Cor vermelha para remover */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.2s ease;
+}
+
+.btn-remover:hover {
+    background-color: #d32f2f;
+}
+
+.carrinho-vazio {
+    text-align: center;
+    color: #777;
+    padding: 20px 0;
+    font-style: italic;
+}
+
+.carrinho-resumo {
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.carrinho-resumo p {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.carrinho-resumo #carrinhoTotal {
+    color: #e63946; /* Cor de destaque para o total final */
+    font-size: 1.1em;
+}
+
+.btn-finalizar-pedido {
+    background-color: #4CAF50; /* Verde para finalizar pedido */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-finalizar-pedido:hover {
+    background-color: #45a049;
+}
+
+/* --- Animações --- */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
+/* --- Estilos da Seção Hero --- */
+.hero {
+    /* Define a altura da seção hero */
+    min-height: 400px; /* Ou ajuste conforme necessário */
+    height: 100vh; /* Faz com que ocupe a altura total da viewport, ou use um valor fixo em pixels */
+    display: flex;
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    justify-content: flex-start; /* Alinha o conteúdo à esquerda */
+    padding: 0 20px; /* Adiciona algum preenchimento horizontal */
+    /* --- ESTILOS DA IMAGEM DE FUNDO --- */
+    background-image: url('../imagens/hamburguer.jpeg'); /* Caminho para sua imagem */
+    background-size: cover; /* Garante que a imagem cubra toda a área */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    /* Opcional: Adicione uma sobreposição para melhor legibilidade do texto */
+    background-blend-mode: overlay; /* Mistura a imagem com uma cor (se você definir background-color) */
+    background-color: rgba(0, 0, 0, 0.6); /* Sobreposição mais escura para contraste do texto */
+}
+
+
+/* Opcional: Ajuste o conteúdo dentro do hero para melhor legibilidade */
+.hero .container { /* Adicionando estilos diretamente ao .container dentro do .hero */
+    display: flex; /* Transforma o container em um container flex */
+    justify-content: flex-start; /* Alinha o conteúdo interno do container à esquerda */
+    width: 100%; /* Garante que o container ocupe a largura total disponível no hero */
+    max-width: 1200px; /* Mantém a largura máxima padrão */
+    padding: 0 20px; /* Garante padding interno para o container, se não estiver definido globalmente */
+}
+
+/* Opcional: Ajuste o conteúdo dentro do hero para melhor legibilidade */
+.hero .left-content {
+    max-width: 600px; /* Limita a largura do texto */
+    color: #fff; /* Deixa o texto branco para melhor contraste em um fundo escuro */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra sutil no texto */
+    z-index: 1; /* Garante que o conteúdo esteja acima de quaisquer sobreposições potenciais */
+}
+
+.hero h1 {
+    font-size: 4em; /* Título maior */
+    margin-bottom: 20px;
+    font-family: 'Luckiest Guy', cursive; /* Assumindo que você quer esta fonte aqui */
+}
+
+.hero h1 span {
+    color: #e63946; /* Cor de destaque para "Melhor" */
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif; /* Assumindo que você quer esta fonte aqui */
+}
+
+.hero .btn {
+    display: inline-block;
+    background-color: #e63946;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Adicione transform para um leve zoom */
+}
+
+.hero .btn:hover {
+    background-color: #c0303e;
+    transform: translateY(-2px); /* Leve movimento para cima no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra no hover */
+}
+
+/* --- Seção de Destaques do Cardápio --- */
+.destaques-cardapio {
+    padding: 80px 0; /* Espaçamento superior e inferior */
+    background-color: #f8f8f8; /* Um fundo claro para a seção */
+    text-align: center; /* Centraliza o título e subtítulo */
+}
+
+.destaques-cardapio h2 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #333;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.destaques-cardapio h2 span {
+    color: #e63946; /* Cor de destaque para a palavra "Destaques" */
+}
+
+.destaques-cardapio .subtitulo {
+    font-size: 1.1em;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 50px auto; /* Centraliza e adiciona margem inferior */
+    line-height: 1.6;
+}
+
+.destaques-grid {
+    display: grid; /* Usa CSS Grid para o layout */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas responsivas */
+    gap: 30px; /* Espaçamento entre os itens */
+    max-width: 1200px; /* Limita a largura do grid */
+    margin: 0 auto; /* Centraliza o grid */
+}
+
+.destaque-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destaque-item:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.destaque-item img {
+    max-width: 100%;
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.destaque-item h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.destaque-item p {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.destaque-item .preco {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e63946; /* Cor do preço */
+    margin-bottom: 20px;
+    display: block; /* Para o margin-bottom funcionar */
+}
+
+.destaque-item .btn-adicionar-carrinho {
+    background-color: #e63946; /* Mesma cor dos destaques ou hero */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Para o padding funcionar */
+    margin-top: 20px; /* Espaçamento acima do botão */
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Adicione transform para um leve zoom */
+
+}
+
+.destaque-item .btn-adicionar-carrinho:hover {
+    background-color: #c0303e;
+    transform: translateY(-2px); /* Leve movimento para cima no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra no hover */
+}
+
+/* --- Seção Sobre Nós --- */
+.sobre-nos {
+    padding: 80px 0;
+    background-color: #fff; /* Fundo branco ou claro */
+}
+
+.sobre-nos .container {
+    max-width: 1200px; /* Alinha com o container principal */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.sobre-nos-conteudo {
+    display: flex;
+    align-items: center; /* Alinha verticalmente texto e imagem */
+    gap: 50px; /* Espaço entre o texto e a imagem */
+}
+
+.sobre-nos-texto {
+    flex: 1; /* Ocupa o espaço disponível */
+    text-align: left;
+}
+
+.sobre-nos-texto h2 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #333;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.sobre-nos-texto h2 span {
+    color: #e63946; /* Cor de destaque */
+}
+
+.sobre-nos-texto .subtitulo {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.sobre-nos-texto p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.sobre-nos-texto .slogan {
+    font-size: 1.2em;
+    font-style: italic;
+    font-weight: bold;
+    color: #e63946; /* Cor de destaque para o slogan */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center; /* Centraliza o slogan dentro da div de texto */
+}
+
+.sobre-nos-imagem {
+    flex: 1; /* Ocupa o espaço restante */
+    display: flex;
+    justify-content: center; /* Centraliza a imagem se ela for menor que o container */
+}
+
+.sobre-nos-imagem img {
+    max-width: 100%;
+    height: auto; /* Altura automática para manter proporção */
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Sombra para destacar a imagem */
+}
+
+/* Estilo para o botão secundário (se você ainda não tiver um) */
+.btn-secundario {
+    background-color: #e63946; /* Mesma cor dos destaques ou hero */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Para o padding funcionar */
+    margin-top: 20px; /* Espaçamento acima do botão */
+    font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Adicione transform para um leve zoom */
+}
+
+.btn-secundario:hover {
+    background-color: #c0303e;
+    transform: translateY(-2px); /* Leve movimento para cima no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra no hover */
+}
+
+/* --- Seção de Depoimentos --- */
+.depoimentos {
+    padding: 80px 0;
+    background-color: #f0f0f0; /* Um fundo cinza claro para destacar a seção */
+    text-align: center;
+}
+
+.depoimentos h2 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #333;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.depoimentos h2 span {
+    color: #e63946; /* Cor de destaque */
+}
+
+.depoimentos .subtitulo {
+    font-size: 1.1em;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    line-height: 1.6;
+}
+
+.depoimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 colunas responsivas */
+    gap: 30px; /* Espaçamento entre os depoimentos */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.depoimento-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    display: flex; /* Para alinhar o conteúdo internamente */
+    flex-direction: column; /* Conteúdo em coluna */
+    align-items: center; /* Centraliza itens na coluna */
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.depoimento-item:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+}
+
+.depoimento-avatar {
+    width: 80px; /* Tamanho do avatar */
+    height: 80px;
+    border-radius: 50%; /* Torna a imagem redonda */
+    object-fit: cover; /* Garante que a imagem preencha o círculo */
+    margin-bottom: 20px;
+    border: 3px solid #e63946; /* Borda para o avatar */
+}
+
+.depoimento-texto {
+    font-size: 1em;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-style: italic; /* Depoimento em itálico */
+}
+
+.depoimento-autor {
+    font-size: 0.95em;
+    font-weight: bold;
+    color: #e63946; /* Cor para o nome do autor */
+    margin-bottom: 10px;
+}
+
+.depoimento-estrelas {
+    color: #FFD700; /* Cor dourada para as estrelas */
+    font-size: 1.2em;
+}
+
+.depoimento-estrelas .fas {
+    margin: 0 2px; /* Espaçamento entre as estrelas */
+}
+
+/* --- Seção de Chamada para Ação (CTA) --- */
+.cta-section {
+    padding: 80px 0;
+    background-color: #f8f8f8; /* Um fundo claro ou neutro */
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #333;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.cta-section h2 span {
+    color: #e63946; /* Cor de destaque */
+}
+
+.cta-section .subtitulo {
+    font-size: 1.1em;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    line-height: 1.6;
+}
+
+.cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 colunas responsivas */
+    gap: 30px; /* Espaçamento entre os itens CTA */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cta-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-item:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cta-item .fas {
+    color: #e63946; /* Cor dos ícones */
+    margin-bottom: 20px;
+    font-size: 3em; /* Tamanho dos ícones (fa-3x já faz isso, mas aqui para garantir) */
+}
+
+.cta-item h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.cta-item p {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+/* Os botões .btn e .btn-secundario já devem ter estilos definidos */
+.cta-item .btn { /* Direciona o botão que está dentro do cta-item */
+    background-color: #e63946; /* Um azul amigável, ou outra cor de sua preferência */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+    font-family: 'Montserrat', sans-serif; /* Usando Montserrat para o texto do botão */
+    display: inline-block;
+    text-align: center;
+    width: 100%; /* Para ocupar a largura do item */
+    max-width: 200px; /* Para limitar o tamanho máximo */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Adicione transform para um leve zoom */
+}
+
+.cta-item .btn:hover {
+    background-color: #c0303e; /* Azul mais escuro no hover */
+    transform: translateY(-2px);
+    transform: translateY(-2px); /* Leve movimento para cima no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra no hover */
+}
+
+/* Você pode adicionar estilos específicos aqui se quiser um visual diferente para os botões do CTA */
+.cta-item .btn {
+    width: 100%; /* Faz o botão ocupar toda a largura disponível no item */
+    max-width: 200px; /* Limita a largura do botão */
+}
+
+/* --- Seção de Reservas --- */
+.reservas-section {
+    background-color: #f8f8f8; /* Fundo claro para a seção */
+    padding: 80px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.reservas-conteudo {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    justify-content: center;
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+    gap: 50px; /* Espaço entre o texto e o formulário */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.reservas-texto {
+    flex: 1; /* Ocupa espaço flexível */
+    min-width: 300px; /* Largura mínima para o texto */
+    text-align: left;
+    padding-right: 20px; /* Espaço entre o texto e o formulário */
+}
+
+.reservas-texto h2 {
+    font-size: 3.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Luckiest Guy', cursive;
+    text-align: left; /* Alinha o título à esquerda */
+}
+
+.reservas-texto h2 span {
+    color: #e63946;
+}
+
+.reservas-texto p {
+    font-size: 1.1em;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.reservas-contato-info {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.reservas-contato-info p {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.reservas-contato-info p .fas {
+    color: #e63946;
+    margin-right: 10px;
+}
+
+
+.reservas-formulario {
+    flex: 1; /* Ocupa espaço flexível */
+    min-width: 350px; /* Largura mínima para o formulário */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alinha os campos do formulário à esquerda */
+}
+
+.form-grupo {
+    margin-bottom: 20px;
+}
+
+.form-grupo label {
+    display: block; /* Cada label em sua própria linha */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.form-grupo input[type="text"],
+.form-grupo input[type="email"],
+.form-grupo input[type="tel"],
+.form-grupo input[type="date"],
+.form-grupo input[type="time"],
+.form-grupo select,
+.form-grupo textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+    box-sizing: border-box; /* Garante que padding não aumente a largura */
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.form-grupo input:focus,
+.form-grupo select:focus,
+.form-grupo textarea:focus {
+    border-color: #e63946; /* Borda vermelha no foco */
+    outline: none; /* Remove o outline padrão do navegador */
+}
+
+.form-grupo select {
+    /* Estilos para o select para que ele se pareça mais com os inputs */
+    appearance: none; /* Remove a seta padrão em alguns navegadores */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20512%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M192%20256L64%20128v256z%22%2F%3E%3C%2Fsvg%3E'); /* Seta customizada */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px; /* Espaço para a seta */
+}
+
+.reservas-formulario button[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2em;
+        font-weight: bold;
+        background-color: #e63946;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+        /* --- As linhas abaixo são as que centralizam o botão --- */
+        display: block; /* Mude de inline-block para block para que margin: auto funcione */
+        margin: 20px auto 0 auto; /* Centraliza horizontalmente e adiciona margem superior */
+        max-width: 280px; /* Ajuste o max-width para o tamanho que você quer que o botão tenha */
+        /* --- Fim das linhas de centralização --- */
+    }
+
+    .reservas-formulario button[type="submit"]:hover {
+        background-color: #c0303e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+/* Mensagens de Sucesso/Erro */
+.mensagem-reserva {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: none; /* Escondida por padrão, será mostrada via JS */
+}
+
+.mensagem-reserva.sucesso {
+    background-color: #d4edda; /* Verde claro */
+    color: #155724; /* Verde escuro */
+    border: 1px solid #c3e6cb;
+}
+
+.mensagem-reserva.erro {
+    background-color: #f8d7da; /* Vermelho claro */
+    color: #721c24; /* Vermelho escuro */
+    border: 1px solid #f5c6cb;
+}
+
+
+/* --- Footer --- */
+footer {
+    background-color: #333; /* Fundo escuro para o rodapé */
+    color: #f8f8f8; /* Texto claro */
+    padding: 60px 0 20px; /* Padding superior, inferior e bottom-bar */
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+}
+
+.footer-grid {
+    display: grid;
+    /* Colunas responsivas: 1fr para cada coluna, mínimo de 200px */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 30px; /* Espaço entre as colunas */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: left; /* Alinha o texto dentro das colunas */
+}
+
+.footer-logo img {
+    height: 150px; /* Tamanho do logo no footer */
+    margin-bottom: 15px;
+}
+
+.footer-logo p {
+    font-size: 0.9em;
+    color: #bbb;
+}
+
+.footer-links h3,
+.footer-contato h3,
+.footer-social h3 {
+    font-size: 1.3em;
+    color: #fd3f4e; /* Cor de destaque para os títulos */
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #fff;
+}
+
+.footer-contato p {
+    margin-bottom: 10px;
+}
+
+.footer-contato p a {
+    color: #bbb; /* Cor padrão para os links de contato (endereço, telefone, email) */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    transition: color 0.3s ease;
+    display: inline-flex; /* Para alinhar o ícone e o texto na mesma linha */
+    align-items: center; /* Centraliza verticalmente o ícone com o texto */
+}
+
+/* Hover para os links de contato */
+.footer-contato p a:hover {
+    color: #fff; /* Cor mais clara no hover */
+    text-decoration: underline; /* Adiciona sublinhado no hover */
+}
+
+.footer-contato p .fas,
+.footer-contato p .fab { /* Adicionado .fab para o ícone do WhatsApp */
+    margin-right: 10px;
+    color: #e63946; /* Cor dos ícones de contato */
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.5em;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #e63946; /* Cor de destaque no hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px; /* Espaço entre o grid e o texto inferior */
+    padding-top: 20px;
+    border-top: 1px solid #444; /* Linha divisória */
+    font-size: 0.85em;
+    color: #bbb;
+}
+
+.footer-bottom .fas {
+    color: #e63946; /* Cor do coração */
+}
+
+.footer-bottom p a {
+    color: #e63946; /* Cor do link (a mesma cor de destaque do seu tema) */
+    text-decoration: none; /* Remover sublinhado padrão do link */
+    font-weight: bold; /* Deixar o nome em negrito */
+    transition: color 0.3s ease; /* Transição suave na cor */
+}
+
+.footer-bottom p a:hover {
+    color: #fff; /* Cor branca no hover, por exemplo */
+    text-decoration: underline; /* Adicionar sublinhado no hover */
+}
+
+
+/* --- Animações ao Rolar (Scroll Reveal) --- */
+.js-scroll {
+    opacity: 0; /* Esconde a seção por padrão */
+    transform: translateY(20px); /* Move ligeiramente para baixo */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transição suave */
+}
+
+.js-scroll.animated {
+    opacity: 1; /* Torna visível */
+    transform: translateY(0); /* Volta à posição original */
+}
+
+
+
+@media (max-width: 992px) { /* Ajusta o layout para telas de tablet */
+    .sobre-nos-conteudo {
+        flex-direction: column; /* Coloca texto e imagem um abaixo do outro */
+        gap: 30px;
+        text-align: center; /* Centraliza o texto */
+    }
+
+    .sobre-nos-texto {
+        text-align: center; /* Centraliza o texto em mobile */
+    }
+
+    .sobre-nos-texto .slogan {
+        text-align: center; /* Garante que o slogan continue centralizado */
+    }
+
+    .reservas-conteudo {
+        flex-direction: column; /* Empilha o texto e o formulário em telas menores */
+        align-items: center;
+        gap: 40px;
+    }
+
+    .reservas-texto,
+    .reservas-formulario {
+        width: 100%; /* Ocupa a largura total */
+        max-width: 500px; /* Limita a largura para não ficar muito esticado */
+        padding-right: 0;
+        text-align: center; /* Centraliza o texto */
+    }
+
+    .reservas-texto h2 {
+        font-size: 3em;
+        text-align: center; /* Centraliza o título */
+    }
+
+    .reservas-texto p {
+        font-size: 1em;
+    }
+
+    .reservas-contato-info {
+        text-align: center; /* Centraliza as informações de contato */
+    }
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    /* Esconda o botão de Login do desktop em telas mobile */
+    .btn-login-desktop {
+        display: none;
+    }
+
+    /* Mostre o item de Login da navegação mobile (dentro do menu hambúrguer) */
+    .nav-principal .nav-item-login-mobile {
+        display: block; /* Ou flex, dependendo do seu layout interno do menu */
+        margin-top: 20px; /* Adicione um espaçamento para separá-lo dos links normais */
+        /* Centraliza o botão dentro do item da lista */
+        text-align: center; 
+    }
+
+    /* Estilize o botão de Login dentro do menu mobile */
+    .btn-login-mobile {
+        padding: 10px 20px;
+        background-color: #e63946; /* Cor de destaque para o botão */
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block; /* Para o padding e margin funcionarem bem */
+    }
+
+    .btn-login-mobile:hover {
+        background-color: #d32f2f;
+    }
+
+    /* **NOVA REGRA** Esconda as ações de desktop (Login + Carrinho Desktop) */
+    .header-acoes-desktop {
+        display: none;
+    }
+
+    /* **NOVA REGRA** Mostre e estilize as ações para mobile (Carrinho Mobile + Hambúrguer) */
+    .header-mobile-actions {
+        display: flex; /* SOBRESCRITA: Agora visível em mobile */
+        align-items: center;
+        gap: 15px; /* Espaço entre o carrinho e o hambúrguer */
+        order: 3; /* Garante que ele fique à direita, se o header.container for flex */
+    }
+
+    nav .lado-direito, nav .lado-direito-2 {
+        margin-left: 0;
+    }
+
+    header .container {
+        justify-content: space-between; /* Centraliza mais os itens */
+    }
+
+    header .logo img {
+        margin-right: 0; /* Remove a margem direita do logo */
+        height: 5.8rem; /* Ajusta a altura do logo para telas menores */
+    }
+
+    .menu-hamburguer {
+        display: block; /* Mostra o menu hambúrguer */
+        cursor: pointer;
+        padding: 10px;
+        z-index: 201; /* Mantém acima de outros elementos */
+    }
+
+    .menu-hamburguer span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px 0;
+        transition: 0.4s;
+    }
+
+    /* Adiciona estilos para transformar o hambúrguer em um ícone de fechar quando ativo */
+    .menu-hamburguer.ativo span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .menu-hamburguer.ativo span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-hamburguer.ativo span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Navegação Mobile */
+    nav {
+        flex-direction: column;
+        position: fixed;
+        top: 0; /* Ou ajuste para a altura do seu header em mobile se quiser que ele deslize debaixo dele */
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        /* padding-top: 80px; <-- Você pode querer ajustar isso. Se top: 0, a navegação começa do topo */
+        transition: left 0.3s ease-in-out;
+        z-index: 140;
+        /* Adicione o justify-content e align-items para centralizar os itens de navegação */
+        justify-content: center; /* Centraliza o conteúdo verticalmente no menu aberto */
+        align-items: center; /* Centraliza o conteúdo horizontalmente no menu aberto */
+    }
+
+    nav.aberto {
+        left: 0; /* Desliza para dentro */
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        display: flex; /* Mostra quando a navegação mobile está aberta */
+    }
+
+    nav ul li {
+        margin: 15px 0;
+    }
+
+    
+
+    .barra-lateral-carrinho {
+        width: 100%; /* Largura total em telas menores */
+        right: -100%;
+    }
+
+    .hero {
+        height: auto; /* Permite que a altura se ajuste */
+        min-height: 400px;
+        padding-top: 80px;
+        padding-bottom: 50px;
+        justify-content: center; /* Centraliza o conteúdo em telas menores */
+        text-align: center; /* Centraliza o texto também */
+    }
+
+    .hero h1 {
+        font-size: 3em;
+    }
+
+    .hero .left-content {
+        max-width: 100%; /* Usa a largura total */
+    }
+
+    .destaques-cardapio {
+        padding: 50px 0;
+    }
+
+    .destaques-cardapio h2 {
+        font-size: 2.5em;
+    }
+
+    .destaques-cardapio .subtitulo {
+        font-size: 1em;
+        margin-bottom: 30px;
+        padding: 0 15px;
+    }
+
+    .destaques-grid {
+        gap: 20px;
+        grid-template-columns: 1fr; /* Em mobile, os itens ficam em uma única coluna */
+        padding: 0 20px; /* Adiciona padding ao redor do grid em mobile */
+    }
+
+    .destaque-item {
+        padding: 20px;
+    }
+
+    .destaque-item img {
+        height: 180px;
+    }
+
+    .destaque-item h3 {
+        font-size: 1.5em;
+    }
+
+    .destaque-item .preco {
+        font-size: 1.3em;
+    }
+
+    .sobre-nos {
+        padding: 50px 0;
+    }
+
+    .sobre-nos-texto h2 {
+        font-size: 2.5em;
+    }
+
+    .sobre-nos-texto .subtitulo,
+    .sobre-nos-texto p,
+    .sobre-nos-texto .slogan {
+        font-size: 0.95em;
+        padding: 0 15px; /* Adiciona padding para o texto não colar nas bordas */
+    }
+
+    .depoimentos {
+        padding: 50px 0;
+    }
+
+    .depoimentos h2 {
+        font-size: 2.5em;
+    }
+
+    .depoimentos .subtitulo {
+        font-size: 1em;
+        margin-bottom: 30px;
+        padding: 0 15px;
+    }
+
+    .depoimentos-grid {
+        gap: 20px;
+        grid-template-columns: 1fr; /* Uma única coluna em telas menores */
+        padding: 0 20px; /* Adiciona padding ao redor do grid em mobile */
+    }
+
+    .depoimento-item {
+        padding: 25px;
+    }
+
+    .depoimento-avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .depoimento-texto {
+        font-size: 0.95em;
+    }
+
+    .cta-section {
+        padding: 50px 0;
+    }
+
+    .cta-section h2 {
+        font-size: 2.5em;
+    }
+
+    .cta-section .subtitulo {
+        font-size: 1em;
+        margin-bottom: 30px;
+        padding: 0 15px;
+    }
+
+    .cta-grid {
+        gap: 20px;
+        grid-template-columns: 1fr; /* Uma única coluna em telas menores */
+        padding: 0 20px;
+    }
+
+    .cta-item {
+        padding: 25px;
+    }
+
+    .cta-item .fas {
+        font-size: 2.5em;
+    }
+
+    .cta-item h3 {
+        font-size: 1.5em;
+    }
+
+    .cta-item p {
+        font-size: 0.9em;
+    }
+
+    .reservas-section {
+        padding: 50px 0;
+    }
+
+    .reservas-conteudo {
+        /* NOVO: Centraliza o conteúdo quando os itens quebram a linha */
+        flex-direction: column; /* Garante que fiquem um abaixo do outro */
+        align-items: center;   /* Centraliza horizontalmente os itens empilhados */
+        gap: 30px; /* Reduz o espaço entre os itens empilhados para mobile */
+    }
+
+    .reservas-texto {
+        min-width: unset; /* Remove a largura mínima para maior flexibilidade */
+        width: 100%; /* Garante que ocupe a largura total disponível */
+        padding-right: 0; /* Remove o padding que pode atrapalhar o alinhamento */
+        text-align: center; /* Centraliza o texto dentro da coluna de texto */
+    }
+
+    .reservas-texto h2 {
+        font-size: 2.5em;
+        text-align: center; /* Centraliza o título */
+    }
+
+    .reservas-texto p {
+        text-align: center; /* Centraliza os parágrafos também */
+    }
+
+    .reservas-contato-info {
+        text-align: center; /* Centraliza as informações de contato */
+    }
+
+    .reservas-formulario {
+        padding: 20px;
+        min-width: unset; /* Permite que o formulário se ajuste melhor em mobile */
+        width: 100%; /* Garante que o formulário ocupe toda a largura disponível */
+    }
+
+    .form-grupo label,
+    .form-grupo input,
+    .form-grupo select,
+    .form-grupo textarea {
+        font-size: 0.9em;
+    }
+
+    .reservas-formulario button[type="submit"] {
+        font-size: 1em;
+        padding: 12px;
+        /* Assegure-se de que display: block e margin: auto; permaneçam */
+        display: block; 
+        margin: 20px auto 0 auto; 
+        max-width: 250px; /* Você pode ajustar este max-width para mobile */
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr; /* Em telas menores, uma coluna */
+        text-align: center; /* Centraliza o texto das colunas */
+    }
+
+    .footer-logo,
+    .footer-links,
+    .footer-contato,
+    .footer-social {
+        margin-bottom: 30px; /* Espaçamento entre as seções em mobile */
+    }
+
+    .footer-links ul,
+    .social-icons {
+        justify-content: center; /* Centraliza links e ícones em mobile */
+        display: flex;
+        flex-wrap: wrap; /* Permite quebrar linha se muitos itens */
+    }
+    
+    .social-icons a {
+        margin: 0 10px 10px; /* Ajusta margem dos ícones em mobile */
+    }
+}
