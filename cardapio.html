@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio - Hamburgueria do Ottis</title>
-    <link rel="stylesheet" href="./assets/css/cardapio.css"> 
+
+    <link rel="stylesheet" href="./css/cardapio.css"> 
+    <link rel="stylesheet" href="./css/paginaPrincipal.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- ================= HEADER ================= -->
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo">
                 <img src="./assets/imagens/logo.png" alt="Logo Hamburgueria do Ottis">
             </a>
+
             <nav class="nav-principal">
                 <ul>
                     <li><a href="index.html">Início</a></li>
@@ -21,12 +27,15 @@
                     <li><a href="index.html#sobre-nos">Sobre Nós</a></li>
                     <li><a href="index.html#reservas">Reservas</a></li>
                     <li><a href="index.html#contato">Contato</a></li>
-                    <li class="nav-item-login-mobile"><a href="#" class="btn btn-login-mobile" id="btnCabecalhoLoginMobile">Login</a></li>
+                    <li class="nav-item-login-mobile">
+                        <a href="#" class="btn btn-login-mobile" id="btnCabecalhoLoginMobile">Login</a>
+                    </li>
                 </ul>
             </nav>
 
             <div class="header-acoes-desktop">
                 <a href="#" class="btn btn-login-desktop" id="btnCabecalhoLoginDesktop">Login</a>
+
                 <a href="#" class="btn btn-carrinho" id="abrirCarrinhoBtnDesktop" aria-label="Abrir Carrinho de Compras">
                     <i class="fas fa-shopping-cart"></i>
                     <span id="contador-carrinho-desktop" class="contador-carrinho">0</span>
@@ -38,6 +47,7 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span id="contador-carrinho-mobile" class="contador-carrinho">0</span>
                 </a>
+
                 <div class="menu-hamburguer">
                     <span></span>
                     <span></span>
@@ -47,124 +57,44 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero js-scroll" id="hero">
-            <div class="container">
-                <div class="left-content">
-                    <h1><span>Cardápio</span></h1>
-                    <p>Descubra uma explosão de sabores em cada hambúrguer, acompanhamento e sobremesa.</p>
-                </div>
+    <!-- ================= HERO ================= -->
+    <section class="hero js-scroll" id="hero">
+        <div class="container">
+            <div class="left-content">
+                <h1><span>Cardápio</span></h1>
+                <p>Descubra uma explosão de sabores em cada hambúrguer, acompanhamento e sobremesa.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- ================= MAIN (PRODUTOS DINÂMICOS) ================= -->
+    <main class="container">
+        <div class="busca-container">
+            <input 
+                type="text" 
+                id="inputBusca" 
+                placeholder="Buscar no cardápio..."
+            >
+        </div>
+
+
+        <div class="filtros-categorias">
+            <button class="filtro-btn ativo" data-categoria="Todos">Todos</button>
+            <button class="filtro-btn" data-categoria="Hambúrgueres">Hambúrgueres</button>
+            <button class="filtro-btn" data-categoria="Acompanhamentos">Acompanhamentos</button>
+            <button class="filtro-btn" data-categoria="Bebidas">Bebidas</button>
+            <button class="filtro-btn" data-categoria="Sobremesas">Sobremesas</button>
+        </div>
+
+        <section id="lista-produtos" class="produtos-container">
+            <!-- JS VAI INSERIR TUDO AQUI -->
         </section>
-
-        <section class="cardapio-categoria js-scroll" id="hamburgueres">
-            <div class="container">
-                <h2>Hambúrgueres <span>Artesanais</span></h2>
-                <p class="subtitulo">Feitos com os melhores cortes de carne e pães fresquinhos.</p>
-                <div class="cardapio-grid">
-                    <div class="cardapio-item">
-                        <img src="./assets/imagens/classico.jpg" alt="Burger Clássico">
-                        <h3>Clássico do Ottis</h3>
-                        <p>Nosso blend de carnes selecionadas, queijo cheddar, alface, tomate, picles e molho da casa.</p>
-                        <span class="preco">R$ 29,90</span>
-                        <button class="btn btn-adicionar-carrinho" data-id="cardapio-burger-classico" data-nome="Burger Clássico" data-preco="29.90">Adicionar</button>
-                    </div>
-
-                    <div class="cardapio-item">
-                        <img src="./assets/imagens/bacon-duplo2.jpg" alt="Bacon Crocante">
-                        <h3>Ottis Duplo Bacon</h3>
-                        <p>Hambúrguer, queijo provolone, cebola caramelizada e fatias generosas de bacon crocante.</p>
-                        <span class="preco">R$ 34,90</span>
-                        <button class="btn btn-adicionar-carrinho" data-id="cardapio-burger-bacon" data-nome="Bacon Crocante" data-preco="34.90">Adicionar</button>
-                    </div>
-
-                    <div class="cardapio-item">
-                        <img src="./assets/imagens/vegano2.jpg" alt="Vegano Delicioso">
-                        <h3>Ottis Vegano</h3>
-                        <p>Hambúrguer de grão de bico, queijo vegano, rúcula, tomate seco e maionese de alho.</p>
-                        <span class="preco">R$ 28,50</span>
-                        <button class="btn btn-adicionar-carrinho" data-id="cardapio-burger-vegano" data-nome="Vegano Delicioso" data-preco="28.50">Adicionar</button>
-                    </div>
-                    </div>
-            </div>
-        </section>
-
-        <section class="cardapio-categoria js-scroll" id="acompanhamentos">
-            <div class="container">
-                <h2><span>Acompanhamentos</span> Irresistíveis</h2>
-                <p class="subtitulo">Perfeitos para complementar seu burger!</p>
-                <div class="cardapio-grid">
-                    <div class="cardapio-item">
-                        <img src="./assets/imagens/batata.jpg" alt="Batatas Fritas">
-                        <h3>Batatas Fritas</h3>
-                        <p>Nossa clássica batata frita, crocante por fora e macia por dentro. Perfeita para qualquer burger.</p>
-                        <span class="preco">R$ 12,00</span>
-                        <button class="btn btn-adicionar-carrinho" data-id="fritas" data-nome="Batatas Fritas" data-preco="12.00">Adicionar</button>
-                    </div>
-
-                    <div class="cardapio-item">
-                        <img src="./assets/imagens/batata-cheddar-bacon.jpg" alt="Batata Cheddar e Bacon">
-                        <h3>Batata Cheddar e Bacon</h3>
-                        <p>Generosa porção de batata frita coberta com delicioso cheddar cremoso e pedaços crocantes de bacon. Uma explosão de sabor!</p>
-                        <span class="preco">R$ 18,00</span>
-                        <button class="btn btn-adicionar-carrinho" data-id="aneis-cebola" data-nome="Anéis de Cebola" data-preco="14.00">Adicionar</button>
-                    </div>
-                    </div>
-            </div>
-        </section>
-
-        <section class="cardapio-categoria js-scroll" id="bebidas">
-            <div class="container">
-                <h2><span>Bebidas</span> Geladas</h2>
-                <p class="subtitulo">Para refrescar sua experiência!</p>
-                <div class="cardapio-grid">
-                    <div class="cardapio-item">
-                        <img src="./assets/imagens/coca-cola.webp" alt="Coca-Cola Lata">
-                        <h3>Coca-Cola Lata</h3>
-                        <p>Lata 350ml.</p>
-                        <span class="preco">R$ 7,00</span>
-                        <button class="btn btn-adicionar-carrinho" data-id="coca-cola" data-nome="Coca-Cola Lata" data-preco="7.00">Adicionar</button>
-                    </div>
-
-                    <div class="cardapio-item">
-                        <img src="./assets/imagens/guarana.webp" alt="Guaraná Lata">
-                        <h3>Coca-Cola Lata</h3>
-                        <p>Lata 350ml.</p>
-                        <span class="preco">R$ 7,00</span>
-                        <button class="btn btn-adicionar-carrinho" data-id="guarana" data-nome="Guaraná Lata" data-preco="7.00">Adicionar</button>
-                    </div>
-
-                    <div class="cardapio-item">
-                        <img src="./assets/imagens/agua.jpg" alt="Água Mineral">
-                        <h3>Água Mineral</h3>
-                        <p>Garrafa 500ml.</p>
-                        <span class="preco">R$ 5,00</span>
-                        <button class="btn btn-adicionar-carrinho" data-id="agua" data-nome="Água Mineral" data-preco="5.00">Adicionar</button>
-                    </div>
-                    </div>
-            </div>
-        </section>
-
-        <section class="cardapio-categoria js-scroll" id="sobremesas">
-            <div class="container">
-                <h2><span>Sobremesas</span> Especiais</h2>
-                <p class="subtitulo">Um doce final para sua refeição perfeita.</p>
-                <div class="cardapio-grid">
-                    <div class="cardapio-item">
-                        <img src="./assets/imagens/ms-nutella.jpg" alt="Milkshake de Nutella">
-                        <h3>Milkshake de Nutella</h3>
-                        <p>Cremoso milkshake com Nutella, finalizado com chantilly.</p>
-                        <span class="preco">R$ 22,00</span>
-                        <button class="btn btn-adicionar-carrinho" data-id="milkshake-nutella" data-nome="Milkshake de Nutella" data-preco="22.00">Adicionar</button>
-                    </div>
-                    </div>
-            </div>
-        </section>
-
     </main>
 
+    <!-- ================= FOOTER ================= -->
     <footer>
         <div class="container footer-grid">
+
             <div class="footer-logo">
                 <img src="./assets/imagens/logo.png" alt="Hamburgueria do Ottis">
                 <p>&copy; 2025 Hamburgueria do Ottis. Todos os direitos reservados.</p>
@@ -183,18 +113,21 @@
 
             <div class="footer-contato" id="contato">
                 <h3>Contato</h3>
+
                 <p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Rua+Rangel+Pestana,+1259,+Sapiranga+-+Fortaleza,+CE" target="_blank" rel="noopener noreferrer" aria-label="Localização no Google Maps">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Rua+Rangel+Pestana,+1259,+Sapiranga+-+Fortaleza,+CE" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-map-marker-alt"></i> Rua Rangel Pestana, 1259, Sapiranga - Fortaleza, CE
                     </a>
                 </p>
+
                 <p>
-                    <a href="https://wa.me/5585999999999?text=Ol%C3%A1,%20gostaria%20de%20fazer%20um%20pedido%20ou%20tirar%20uma%20d%C3%BAvida!" target="_blank" rel="noopener noreferrer" aria-label="Contatar via WhatsApp">
+                    <a href="https://wa.me/5585999999999" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-whatsapp"></i> (85) 99999-9999 (WhatsApp)
                     </a>
                 </p>
+
                 <p>
-                    <a href="mailto:Ottis@gmail.com" aria-label="Enviar e-mail para Ottis">
+                    <a href="mailto:Ottis@gmail.com">
                         <i class="fas fa-envelope"></i> Ottis@gmail.com
                     </a>
                 </p>
@@ -203,34 +136,60 @@
             <div class="footer-social">
                 <h3>Siga-nos</h3>
                 <div class="social-icons">
-                    <a href="https://facebook.com/seuperfil" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/seuperfil" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://twitter.com/seuperfil" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://wa.me/5585999999999?text=Ol%C3%A1,%20gostaria%20de%20fazer%20um%20pedido%20ou%20tirar%20uma%20d%C3%BAvida!" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
+
         </div>
+
         <div class="footer-bottom">
             <p>Desenvolvido por <a href="https://github.com/Italodacostaa">Italo Costa</a></p>
         </div>
     </footer>
-    
-    
+
+    <!-- ================= MODAL CARRINHO ================= -->
     <div class="carrinho-modal" id="carrinhoModal">
         <div class="carrinho-conteudo">
-            <span class="fechar-carrinho" id="fecharCarrinhoBtn">&times;</span>
+
+            <button class="fechar-carrinho" id="fecharCarrinhoBtn">✖</button>
+
             <h2>Seu Carrinho</h2>
-            <div class="itens-carrinho" id="itensCarrinho">
-                <p class="carrinho-vazio">Seu carrinho está vazio. Adicione alguns itens!</p>
-            </div>
+
+            <div id="itensCarrinho"></div>
+
+            <p class="carrinho-vazio">Seu carrinho está vazio. Adicione alguns itens!</p>
+
             <div class="carrinho-resumo">
-                <p>Total: <span id="carrinhoTotal">R$ 0,00</span></p>
+                <p>Total: <strong id="carrinhoTotal">R$ 0,00</strong></p>
                 <button class="btn btn-finalizar-pedido">Finalizar Pedido</button>
             </div>
         </div>
     </div>
 
-    <script src="./assets/js/PaginaPrincipal.js"></script>
-    <script src="./assets/js/carrinho.js"></script>
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-conteudo">
+            <h2>Confirmar Pedido</h2>
+
+            <div id="checkoutItens"></div>
+
+                <p class="checkout-total">Total: <strong id="checkoutTotal"></strong></p>
+
+                <div class="checkout-acoes">
+                <button class="btn btn-confirmar-pedido">Confirmar</button>
+                <button class="btn btn-cancelar-pedido">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- ================= SCRIPTS ================= -->
+    <script src="./js/pagina-principal.js"></script>
+    <script src="./js/produtos.js"></script>
+    <script src="./js/carrinho.js"></script>
 </body>
 </html>
