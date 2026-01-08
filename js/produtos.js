@@ -127,6 +127,8 @@ function getQuantidadeNoCarrinho(id) {
 // ================================
 function renderizarProdutos() {
   const container = document.getElementById("lista-produtos");
+  if (!container) return;
+
   container.innerHTML = "";
 
   let produtosFiltrados = produtos.filter(produto => {
@@ -201,21 +203,27 @@ function bindEventosQuantidade() {
   document.querySelectorAll(".btn-adicionar-carrinho").forEach(btn => {
     btn.addEventListener("click", e => {
       const { id, nome, preco } = e.currentTarget.dataset;
-      adicionarAoCarrinho({ id, nome, preco: Number(preco) });
+      if (typeof adicionarAoCarrinho === "function") {
+        adicionarAoCarrinho({ id, nome, preco: Number(preco) });
+      }
       renderizarProdutos();
     });
   });
 
   document.querySelectorAll(".btn-mais").forEach(btn => {
     btn.addEventListener("click", e => {
-      alterarQuantidade(e.currentTarget.dataset.id, "incrementar");
+      if (typeof alterarQuantidade === "function") {
+        alterarQuantidade(e.currentTarget.dataset.id, "incrementar");
+      }
       renderizarProdutos();
     });
   });
 
   document.querySelectorAll(".btn-menos").forEach(btn => {
     btn.addEventListener("click", e => {
-      alterarQuantidade(e.currentTarget.dataset.id, "decrementar");
+      if (typeof alterarQuantidade === "function") {
+        alterarQuantidade(e.currentTarget.dataset.id, "decrementar");
+      }
       renderizarProdutos();
     });
   });
@@ -224,33 +232,30 @@ function bindEventosQuantidade() {
 // ================================
 // FILTRO
 // ================================
-document.querySelectorAll(".filtro-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    categoriaAtiva = btn.dataset.categoria;
+const filtros = document.querySelectorAll(".filtro-btn");
+if (filtros.length > 0) {
+  filtros.forEach(btn => {
+    btn.addEventListener("click", () => {
+      categoriaAtiva = btn.dataset.categoria;
 
-    document.querySelectorAll(".filtro-btn").forEach(b => b.classList.remove("ativo"));
-    btn.classList.add("ativo");
+      filtros.forEach(b => b.classList.remove("ativo"));
+      btn.classList.add("ativo");
 
-    renderizarProdutos();
+      renderizarProdutos();
+    });
   });
-});
+}
 
 // ================================
 // BUSCA
 // ================================
-document.getElementById("inputBusca").addEventListener("input", e => {
-  termoBusca = e.target.value.toLowerCase();
-  renderizarProdutos();
-});
-
-// ================================
-// INIT
-// ================================
-renderizarProdutos();
-
-
-
-
+const inputBusca = document.getElementById("inputBusca");
+if (inputBusca) {
+  inputBusca.addEventListener("input", e => {
+    termoBusca = e.target.value.toLowerCase();
+    renderizarProdutos();
+  });
+}
 
 // ================================
 // INIT
