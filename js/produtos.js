@@ -114,30 +114,44 @@ const produtos = [
 const ordemCategorias = ["Hambúrgueres", "Acompanhamentos", "Bebidas", "Sobremesas"];
 
 // ================================
-// RENDER
+// UTIL
 // ================================
-
-function renderizarProdutos() {
-  const container = document.getElementById("lista-produtos");
-
 function getQuantidadeNoCarrinho(id) {
-  const carrinho = JSON.parse(localStorage.getItem('carrinhoOttis')) || [];
+  const carrinho = JSON.parse(localStorage.getItem("carrinhoOttis")) || [];
   const item = carrinho.find(p => p.id === id);
   return item ? item.quantidade : 0;
 }
 
+// ================================
+// RENDER
+// ================================
 function renderizarProdutos() {
-  container.innerHTML = ""; // limpa antes de renderizar
+  const container = document.getElementById("lista-produtos");
+  container.innerHTML = "";
+
+  let produtosFiltrados = produtos.filter(produto => {
+    const matchCategoria =
+      categoriaAtiva === "Todos" || produto.categoria === categoriaAtiva;
+
+    const matchBusca =
+      produto.nome.toLowerCase().includes(termoBusca) ||
+      produto.descricao.toLowerCase().includes(termoBusca);
+
+    return matchCategoria && matchBusca;
+  });
+
   const categorias = {};
 
-  produtos.forEach(produto => {
+  produtosFiltrados.forEach(produto => {
     if (!categorias[produto.categoria]) {
       categorias[produto.categoria] = [];
     }
     categorias[produto.categoria].push(produto);
   });
 
-  Object.keys(categorias).forEach(categoria => {
+  ordemCategorias.forEach(categoria => {
+    if (!categorias[categoria]) return;
+
     const section = document.createElement("section");
     section.classList.add("cardapio-categoria");
 
@@ -148,7 +162,7 @@ function renderizarProdutos() {
           const qtd = getQuantidadeNoCarrinho(produto.id);
 
           return `
-            <div class="cardapio-item" data-id="${produto.id}">
+            <div class="cardapio-item">
               <img src="${produto.imagem}" alt="${produto.nome}">
               <h3>${produto.nome}</h3>
               <p>${produto.descricao}</p>
@@ -156,17 +170,17 @@ function renderizarProdutos() {
 
               ${
                 qtd === 0
-                ? `<button class="btn btn-adicionar-carrinho"
+                  ? `<button class="btn btn-adicionar-carrinho"
                       data-id="${produto.id}"
                       data-nome="${produto.nome}"
                       data-preco="${produto.preco}">
                       Adicionar
-                   </button>`
-                : `<div class="controle-quantidade">
+                    </button>`
+                  : `<div class="controle-quantidade">
                       <button class="btn-menos" data-id="${produto.id}">−</button>
                       <span class="quantidade">${qtd}</span>
                       <button class="btn-mais" data-id="${produto.id}">+</button>
-                   </div>`
+                    </div>`
               }
             </div>
           `;
@@ -180,9 +194,12 @@ function renderizarProdutos() {
   bindEventosQuantidade();
 }
 
+// ================================
+// EVENTOS DOS PRODUTOS
+// ================================
 function bindEventosQuantidade() {
   document.querySelectorAll(".btn-adicionar-carrinho").forEach(btn => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", e => {
       const { id, nome, preco } = e.currentTarget.dataset;
       adicionarAoCarrinho({ id, nome, preco: Number(preco) });
       renderizarProdutos();
@@ -190,44 +207,47 @@ function bindEventosQuantidade() {
   });
 
   document.querySelectorAll(".btn-mais").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      const id = e.currentTarget.dataset.id;
-      alterarQuantidade(id, "incrementar");
+    btn.addEventListener("click", e => {
+      alterarQuantidade(e.currentTarget.dataset.id, "incrementar");
       renderizarProdutos();
     });
   });
 
   document.querySelectorAll(".btn-menos").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      const id = e.currentTarget.dataset.id;
-      alterarQuantidade(id, "decrementar");
+    btn.addEventListener("click", e => {
+      alterarQuantidade(e.currentTarget.dataset.id, "decrementar");
       renderizarProdutos();
     });
   });
 }
 
-renderizarProdutos();
+// ================================
+// FILTRO
+// ================================
+document.querySelectorAll(".filtro-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    categoriaAtiva = btn.dataset.categoria;
 
-}
+    document.querySelectorAll(".filtro-btn").forEach(b => b.classList.remove("ativo"));
+    btn.classList.add("ativo");
 
-function getQuantidadeNoCarrinho(id) {
-  const carrinho = JSON.parse(localStorage.getItem('carrinhoOttis')) || [];
-  const item = carrinho.find(p => p.id === id);
-  return item ? item.quantidade : 0;
-}
+    renderizarProdutos();
+  });
+});
 
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest(".filtro-btn");
-  if (!btn) return;
-
-  const categoria = btn.dataset.categoria;
-  categoriaAtiva = categoria;
-
-  document.querySelectorAll(".filtro-btn").forEach(b => b.classList.remove("ativo"));
-  btn.classList.add("ativo");
-
+// ================================
+// BUSCA
+// ================================
+document.getElementById("inputBusca").addEventListener("input", e => {
+  termoBusca = e.target.value.toLowerCase();
   renderizarProdutos();
 });
+
+// ================================
+// INIT
+// ================================
+renderizarProdutos();
+
 
 
 

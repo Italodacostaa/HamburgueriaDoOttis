@@ -622,7 +622,7 @@ header .logo {
     /* Opcional: Adicione uma sobreposição para melhor legibilidade do texto */
     background-blend-mode: overlay; /* Mistura a imagem com uma cor (se você definir background-color) */
     background-color: rgba(0, 0, 0, 0.6); /* Sobreposição mais escura para contraste do texto */
-    margin-bottom: 5px;
+    margin-bottom: 1rem;
 }
 
 
