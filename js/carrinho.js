@@ -2,10 +2,14 @@
 // CARRINHO.JS - HAMBURGUERIA DO OTTIS
 // ================================
 
-// --- Estado ---
+// ================================
+// ESTADO
+// ================================
 let carrinho = JSON.parse(localStorage.getItem('carrinhoOttis')) || [];
 
-// --- DOM ---
+// ================================
+// DOM
+// ================================
 let abrirCarrinhoBtnDesktop;
 let abrirCarrinhoBtnMobile;
 let contadorCarrinhoDesktop;
@@ -17,7 +21,7 @@ let carrinhoTotalSpan;
 let mensagemCarrinhoVazio;
 let btnFinalizarPedido;
 
-// --- Confirmação modal ---
+// Checkout
 let checkoutModal;
 let checkoutItensContainer;
 let checkoutTotalSpan;
@@ -52,6 +56,12 @@ function atualizarContadorCarrinhoHeader() {
         if (!el) return;
         el.textContent = total;
         el.style.display = total > 0 ? 'flex' : 'none';
+
+        el.classList.remove('animar');
+        if (total > 0) {
+            void el.offsetWidth;
+            el.classList.add('animar');
+        }
     };
 
     atualizar(contadorCarrinhoDesktop);
@@ -86,7 +96,7 @@ function renderizarCarrinho() {
 
                 <div class="carrinho-item-controles">
                     <button class="btn-quantidade" data-id="${item.id}" data-action="decrementar">-</button>
-                    <span>${item.quantidade}</span>
+                    <span class="quantidade">${item.quantidade}</span>
                     <button class="btn-quantidade" data-id="${item.id}" data-action="incrementar">+</button>
                     <span class="preco-item">R$ ${(item.preco * item.quantidade).toFixed(2)}</span>
                     <button class="btn-remover" data-id="${item.id}">Remover</button>
@@ -102,7 +112,7 @@ function renderizarCarrinho() {
 }
 
 // ================================
-// AÇÕES
+// AÇÕES DO CARRINHO
 // ================================
 
 function adicionarAoCarrinho({ id, nome, preco }) {
@@ -150,18 +160,71 @@ function alterarQuantidade(id, action) {
     renderizarCarrinho();
 }
 
-function finalizarPedido() {
-    if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio.');
-        return;
-    }
+// ================================
+// CHECKOUT
+// ================================
+function abrirCheckout() {
+    if (carrinho.length === 0) return;
 
-    alert(`Pedido finalizado!\nTotal: R$ ${calcularTotalCarrinho().toFixed(2)}`);
+    checkoutItensContainer.innerHTML = "";
 
-    carrinho = [];
-    salvarCarrinho();
-    renderizarCarrinho();
-    carrinhoModal && (carrinhoModal.style.display = 'none');
+    carrinho.forEach(item => {
+        const p = document.createElement("p");
+        p.textContent = `${item.nome} x${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}`;
+        checkoutItensContainer.appendChild(p);
+    });
+
+    checkoutTotalSpan.textContent = `R$ ${calcularTotalCarrinho().toFixed(2)}`;
+    checkoutModal.style.display = "flex";
+}
+
+const campoEndereco = document.getElementById("campoEndereco");
+const inputEndereco = document.getElementById("inputEndereco");
+const inputObservacoes = document.getElementById("inputObservacoes");
+
+// Toggle Entrega / Retirada
+document.querySelectorAll('input[name="tipoEntrega"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+        if (radio.value === "Entrega" && radio.checked) {
+            campoEndereco.style.display = "block";
+        }
+
+        if (radio.value === "Retirada" && radio.checked) {
+            campoEndereco.style.display = "none";
+            inputEndereco.value = "";
+        }
+    });
+});
+
+
+// ================================
+// WHATSAPP
+// ================================
+function gerarMensagemWhatsApp() {
+    let mensagem = "🍔 *Pedido - Hamburgueria do Ottis*%0A%0A";
+
+    carrinho.forEach(item => {
+        mensagem += `• ${item.nome} x${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}%0A`;
+    });
+
+    mensagem += `%0A*Total: R$ ${calcularTotalCarrinho().toFixed(2)}*%0A`;
+
+    const formaPagamento = document.querySelector('input[name="formaPagamento"]:checked')?.value || "Não informado";
+
+    mensagem += `%0A*Forma de pagamento:* ${formaPagamento}%0A`;
+    mensagem += `%0A📍 Endereço: (informar)%0A`;
+    mensagem += `%0AObrigado! 😄`;
+
+    return mensagem;
+}
+
+function enviarPedidoParaWhatsApp() {
+    const numeroWhatsApp = "5585987712548"; // <-- TROQUE PELO NÚMERO REAL
+
+    const mensagem = gerarMensagemWhatsApp();
+    const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+
+    window.open(url, "_blank");
 }
 
 // ================================
@@ -191,56 +254,20 @@ document.addEventListener('DOMContentLoaded', () => {
     [abrirCarrinhoBtnDesktop, abrirCarrinhoBtnMobile].forEach(btn => {
         btn && btn.addEventListener('click', e => {
             e.preventDefault();
-            carrinhoModal && (carrinhoModal.style.display = 'flex');
+            carrinhoModal.style.display = 'flex';
             renderizarCarrinho();
         });
     });
 
     // Fechar carrinho
     fecharCarrinhoBtn && fecharCarrinhoBtn.addEventListener('click', () => {
-        carrinhoModal && (carrinhoModal.style.display = 'none');
+        carrinhoModal.style.display = 'none';
     });
 
     carrinhoModal && carrinhoModal.addEventListener('click', e => {
         if (e.target === carrinhoModal) carrinhoModal.style.display = 'none';
     });
 
-    // 🔥 DELEGAÇÃO – BOTÃO ADICIONAR (FUNCIONA COM JS DINÂMICO)
-    
-
-    function atualizarContadorCarrinhoHeader() {
-    const total = calcularTotalItens();
-
-    const atualizar = (el) => {
-        if (!el) return;
-        el.textContent = total;
-        el.style.display = total > 0 ? 'flex' : 'none';
-
-        el.classList.remove('animar');
-        if (total > 0) {
-            void el.offsetWidth; // força reflow
-            el.classList.add('animar');
-        }
-    };
-
-        atualizar(contadorCarrinhoDesktop);
-        atualizar(contadorCarrinhoMobile);
-    }
-
-    function abrirCheckout() {
-        if (carrinho.length === 0) return;
-
-        checkoutItensContainer.innerHTML = "";
-
-        carrinho.forEach(item => {
-            const p = document.createElement("p");
-            p.textContent = `${item.nome} x${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}`;
-            checkoutItensContainer.appendChild(p);
-        });
-
-        checkoutTotalSpan.textContent = `R$ ${calcularTotalCarrinho().toFixed(2)}`;
-        checkoutModal.style.display = "flex";
-    }
 
 
 
@@ -258,27 +285,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-        btnFinalizarPedido && btnFinalizarPedido.addEventListener('click', abrirCheckout);
-        btnCancelarPedido && btnCancelarPedido.addEventListener('click', () => {
+    // Finalizar pedido
+    btnFinalizarPedido && btnFinalizarPedido.addEventListener('click', abrirCheckout);
+
+    btnCancelarPedido && btnCancelarPedido.addEventListener('click', () => {
         checkoutModal.style.display = "none";
     });
 
-    btnConfirmarPedido && btnConfirmarPedido.addEventListener('click', () => {
-        alert("Pedido confirmado! Obrigado pela preferência 😄");
+    btnConfirmarPedido && btnConfirmarPedido.addEventListener("click", () => {
+    const tipoEntrega = document.querySelector('input[name="tipoEntrega"]:checked').value;
+    const formaPagamento = document.querySelector('input[name="formaPagamento"]:checked').value;
+    const endereco = document.getElementById("inputEndereco").value;
+    const observacoes = document.getElementById("inputObservacoes").value;
 
-        carrinho = [];
-        salvarCarrinho();
-        renderizarCarrinho();
+    let mensagem = `*Pedido - Hamburgueria do Ottis*%0A%0A`;
 
-        if (typeof renderizarProdutos === "function") {
-            renderizarProdutos();
-        }
-
-        checkoutModal.style.display = "none";
-        carrinhoModal.style.display = "none";
+    carrinho.forEach(item => {
+        mensagem += `• ${item.nome} x${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}%0A`;
     });
+
+    mensagem += `%0A*Total:* R$ ${calcularTotalCarrinho().toFixed(2)}%0A`;
+    mensagem += `*Tipo:* ${tipoEntrega}%0A`;
+
+    if (tipoEntrega === "Entrega") {
+        mensagem += `*Endereço:* ${endereco || "Não informado"}%0A`;
+    }
+
+    if (observacoes) {
+        mensagem += `*Obs:* ${observacoes}%0A`;
+    }
+
+    mensagem += `*Pagamento:* ${formaPagamento}%0A`;
+
+    const telefone = "5585987712548"; // seu número aqui
+    const url = `https://wa.me/${telefone}?text=${mensagem}`;
+
+    window.open(url, "_blank");
+
+    // limpa tudo
+    carrinho = [];
+    salvarCarrinho();
+    renderizarCarrinho();
+    if (typeof renderizarProdutos === "function") renderizarProdutos();
+
+    checkoutModal.style.display = "none";
+    carrinhoModal.style.display = "none";
+});
+
 
 
     renderizarCarrinho();
-    
+
 });

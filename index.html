@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hamburgueria do Ottis – Hambúrguer artesanal em Fortaleza. Peça online, reserve sua mesa e viva a experiência do verdadeiro burger.">
     <link rel="stylesheet" href="./css/paginaPrincipal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Hamburgueria do Ottis</title>
@@ -10,7 +11,7 @@
 <body>
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">
+            <a href="#hero" class="logo">
                 <img src="./assets/imagens/logo.png" alt="Logo Hamburgueria do Ottis">
             </a>
             <nav class="nav-principal">
@@ -20,7 +21,6 @@
                     <li><a href="index.html#sobre-nos">Sobre Nós</a></li>
                     <li><a href="index.html#reservas">Reservas</a></li>
                     <li><a href="index.html#contato">Contato</a></li>
-                    <li class="nav-item-login-mobile"><a href="#" class="btn btn-login-mobile" id="btnCabecalhoLoginMobile">Login</a></li>
                 </ul>
             </nav>
 
@@ -49,19 +49,22 @@
     <section class="hero js-scroll" id="hero">
         <div class="container">
             <div class="left-content">
-                <h1>O <span>Melhor</span> Burger Chegou!</h1>
-                <p>Experimente a explosão de sabores que só Hamburgueria do Ottis pode oferecer. Feito com paixão e os melhores ingredientes.</p>
-                <a href="cardapio.html" class="btn">Ver Cardápio</a>
+                <h1>O <span>Burger Perfeito</span> Existe.<br>E Ele Está Aqui.</h1>
+                <p>Hambúrgueres artesanais, ingredientes selecionados e uma experiência que vai muito além do sabor.</p>
+
+
+                <div class="hero-acoes">
+                    <a href="cardapio.html" class="btn btn-primario" aria-label="Ver cardápio da Hamburgueria do Ottis">Ver Cardápio</a>
+                    <a href="cardapio.html" class="btn btn-secundario-outline" aria-label="Ver cardápio da Hamburgueria do Ottis">Pedir Agora</a>
+                </div>
             </div>
         </div>
     </section>
 
-    </section> 
-    
     <section class="destaques-cardapio js-scroll" id="destaques-cardapio">
         <div class="container">
             <h2>Nossos <span>Destaques</span></h2>
-            <p class="subtitulo">Conheça os hambúrgueres que conquistaram o coração (e o paladar) dos nossos clientes!</p>
+            <p class="subtitulo">Os campeões de venda. Os queridinhos da galera. Os que todo mundo volta pra pedir.</p>
             
             <div class="destaques-grid">
                 <div class="destaque-item">
@@ -69,7 +72,14 @@
                     <h3>Clássico do Ottis</h3>
                     <p>Nosso tradicional blend de carnes, queijo cheddar, alface, tomate, picles e o molho especial do Ottis.</p>
                     <span class="preco">R$ 29,90</span>
-                    <button class="btn btn-adicionar-carrinho" data-id="burger-classico" data-nome="Burger Clássico" data-preco="29.90">Adicionar ao Carrinho</button>
+                    <button 
+                        class="btn-adicionar-carrinho" 
+                        data-id="1" 
+                        data-nome="Burger Artesanal" 
+                        data-preco="29.90"
+                        >
+                        Adicionar ao carrinho
+                    </button>
                 </div>
 
                 <div class="destaque-item">
@@ -77,7 +87,14 @@
                     <h3>Ottis Duplo Bacon</h3>
                     <p>Para os amantes de bacon: suculento hambúrguer, queijo provolone e fatias generosas de bacon crocante.</p>
                     <span class="preco">R$ 34,90</span>
-                    <button class="btn btn-adicionar-carrinho" data-id="burger-bacon" data-nome="Bacon Lover Burger" data-preco="34.90">Adicionar ao Carrinho</button>
+                    <button 
+                        class="btn-adicionar-carrinho" 
+                        data-id="1" 
+                        data-nome="Burger Artesanal" 
+                        data-preco="34.90"
+                        >
+                        Adicionar ao carrinho
+                    </button>
                 </div>
 
                 <div class="destaque-item">
@@ -85,7 +102,14 @@
                     <h3>Ottis Vegano</h3>
                     <p>Uma opção deliciosa para todos: hambúrguer de grão de bico, cream cheese vegano, rúcula e tomate seco.</p>
                     <span class="preco">R$ 28,50</span>
-                    <button class="btn btn-adicionar-carrinho" data-id="burger-vegano" data-nome="Veggie Delight Burger" data-preco="28.50">Adicionar ao Carrinho</button>
+                    <button 
+                        class="btn-adicionar-carrinho" 
+                        data-id="1" 
+                        data-nome="Burger Artesanal" 
+                        data-preco="28.50"
+                        >
+                        Adicionar ao carrinho
+                    </button>
                 </div>
             </div>
         </div>
@@ -97,9 +121,10 @@
                 <div class="sobre-nos-texto">
                     <h2>Nossa <span>História</span></h2>
                     <p class="subtitulo">Sabor, paixão e tradição em cada mordida.</p>
-                    <p>A Hamburgueria do Ottis nasceu de um sonho simples: transformar a paixão por hambúrgueres artesanais em uma experiência inesquecível para todos. Começamos pequenos, com uma chapa e uma receita secreta, no coração de Fortaleza. Cada hambúrguer era preparado com o carinho e a dedicação que só quem ama o que faz pode oferecer.</p>
-                    <p>Com o tempo, o aroma dos nossos burgers começou a atrair cada vez mais pessoas, e o que era um sonho virou realidade. Hoje, a Hamburgueria do Ottis é sinônimo de **qualidade, inovação e o verdadeiro sabor do hambúrguer perfeito**. Usamos apenas os melhores ingredientes, carnes selecionadas, pães fresquinhos e molhos que são a nossa marca registrada.</p>
-                    <p class="slogan">**Hamburgueria do Ottis: Onde cada burger conta uma história de sabor.**</p>
+                    <p>A Hamburgueria do Ottis nasceu da paixão por hambúrguer de verdade. Cada receita é criada para entregar sabor, qualidade e experiência em cada mordida.</p>
+                    <p>Trabalhamos com carnes selecionadas, pães artesanais e molhos exclusivos. Aqui, cada detalhe importa.</p>
+                    <p class="slogan">Não fazemos hambúrguer. Criamos experiências.</p>
+
                     <a href="cardapio.html" class="btn btn-secundario">Conheça Nosso Cardápio</a>
                 </div>
                 <div class="sobre-nos-imagem">
@@ -131,7 +156,7 @@
                 <div class="depoimento-item">
                     <img src="./assets/imagens/pessoa.webp" alt="Foto de João Oliveira" class="depoimento-avatar">
                     <p class="depoimento-texto">"Atendimento impecável e o burger vegetariano é uma explosão de sabor! Fiquei impressionado com a qualidade e as opções para todos os gostos. Recomendo demais!"</p>
-                    <p class="depoimento-autor">- João Oliveira, Cliente Satisfeito</p>
+                    <p class="depoimento-autor">- João Oliveira, Cliente desde 2023</p>
                     <div class="depoimento-estrelas">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -160,18 +185,18 @@
     <section class="cta-section js-scroll" id="cta-section">
         <div class="container">
             <h2>Pronto para <span>Sua Experiência Ottis?</span></h2>
-            <p class="subtitulo">Escolha como você quer saborear o melhor burger da cidade!</p>
+            <p class="subtitulo">Você pede. A gente capricha!</p>
             
             <div class="cta-grid">
                 <div class="cta-item">
-                    <i class="fas fa-burger fa-3x"></i> <h3>Faça Seu Pedido Online</h3>
-                    <p>Peça seus favoritos diretamente pelo nosso site e receba em casa com agilidade.</p>
+                    <i class="fas fa-burger fa-3x"></i><h3>Peça Agora</h3>
+                    <p>Seu próximo burger inesquecível está a poucos cliques de distância.</p>
                     <a href="cardapio.html" class="btn">Ver Cardápio</a>
                 </div>
 
                 <div class="cta-item">
-                    <i class="fas fa-calendar-alt fa-3x"></i> <h3>Faça Sua Reserva Online</h3>
-                    <p>Garanta seu lugar e evite filas! Perfeito para encontros e celebrações.</p>
+                    <i class="fas fa-calendar-alt fa-3x"></i><h3>Reserve sua Mesa</h3>
+                    <p>Garanta seu lugar e viva a experiência completa da Hamburgueria do Ottis.</p>
                     <a href="#reservas" class="btn btn-secundario" id="btnFazerReserva">Reservar Mesa</a> </div>
 
                 <div class="cta-item">
@@ -187,7 +212,7 @@
             <div class="reservas-conteudo">
                 <div class="reservas-texto">
                     <h2>Faça Sua <span>Reserva</span></h2>
-                    <p>Garanta sua mesa na Hamburgueria do Ottis e desfrute de uma experiência deliciosa sem esperas!</p>
+                    <p>Evite filas e viva a experiência Ottis.</p>
                     <p>Preencha o formulário ao lado e aguarde a confirmação.</p>
                     <div class="reservas-contato-info">
                         <p><i class="fas fa-phone"></i> (85) 99999-9999</p>
@@ -233,7 +258,7 @@
                             <label for="observacoesReserva">Observações (opcional):</label>
                             <textarea id="observacoesReserva" name="observacoes" rows="4" placeholder="Alguma preferência ou restrição alimentar?"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary-alt">Confirmar Reserva</button>
+                        <button type="submit" class="btn btn-primary-alt">Reservar Agora</button>
                         <div id="mensagemReserva" class="mensagem-reserva"></div>
                     </form>
                 </div>
@@ -293,7 +318,6 @@
         </div>
     </footer>
 
-
     <div class="carrinho-modal" id="carrinhoModal">
         <div class="carrinho-conteudo">
             <span class="fechar-carrinho" id="fecharCarrinhoBtn">&times;</span>
@@ -309,8 +333,6 @@
     </div>
     
 
-    
-    
     <script src="./js/pagina-principal.js"></script>
     <script src="./js/carrinho.js"></script>
 </body>

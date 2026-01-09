@@ -1,101 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Rock+Salt&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@100..900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-    font-family: 'Montserrat', sans-serif; /* Usando Montserrat como fonte padrão */
-    background-color: #ffffff; /* Um fundo levemente acinzentado */
-    color: #333; /* Cor de texto padrão */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    color: #333;
     line-height: 1.6;
-    overflow-x: hidden; /* Evita rolagem horizontal indesejada no body */
+    overflow-x: hidden;
 }
 
-.container{
+.container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
 }
+
 
 /* Cabeçalho */
 header {
-    background-color: #fff;
-    padding-bottom: 28px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Uma sombra sutil */
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.87);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    position: sticky;
     top: 0;
-    z-index: 100; /* Garante que o cabeçalho fique acima de outros elementos */
-    height: 6rem;
-    position: relative;
+    z-index: 1000;
 }
 
 header .container {
     display: flex;
-    justify-content: space-between; /* AGORA SEPARA LOGO, NAV E AÇÕES */
     align-items: center;
-    height: 150%;
-    /* Remova o padding-bottom: 28px; do header e adicione um padding horizontal aqui */
-    padding: 0 20px; /* Adiciona padding dos lados para não colar nas bordas */
+    justify-content: space-between;
+    height: 80px;
 }
 
 header .logo img {
-    height: 7rem; /* Ajuste a altura do logo conforme necessário */
-    width: auto; /* Mantém a proporção */
-    max-width: 150px; /* Define uma largura máxima */
-    margin-right: 430px; /* Alinha o logo à esquerda */
+    height: 60px;
+    width: auto;
 }
 
-nav {
+/* Navegação */
+.nav-principal ul {
     display: flex;
-    /* justify-content: flex-end !important; -- REMOVIDO */
-    /* padding-bottom: 15px; -- REMOVIDO */
-}
-nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
+    gap: 28px;
 }
 
-nav ul li {
-    margin-left: 30px;
-}
-
-nav ul li:first-child {
-    margin-left: 0;
-}
-
-nav ul li a {
+.nav-principal ul li a {
     text-decoration: none;
-    color: #555;
+    color: #444;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
-nav ul li a:hover,
-nav ul li a:focus { /* Adicionado estilo de foco */
+.nav-principal ul li a:hover {
     color: #e63946;
 }
 
-/* --- Ações do Cabeçalho para Desktop --- */
+/* Ações desktop */
 .header-acoes-desktop {
-    display: flex; /* Visível por padrão em desktop */
+    display: flex;
     align-items: center;
-    gap: 20px; /* Espaço entre o Login e o Carrinho */
+    gap: 16px;
 }
 
-/* --- Esconda as Ações Mobile e o Hambúrguer em Desktop --- */
+/* Mobile actions escondidas no desktop */
 .header-mobile-actions {
-    display: none; /* Escondido por padrão em desktop */
-}
-
-/* Esconda o item de Login da navegação mobile por padrão (ele só aparece em mobile) */
-.nav-principal .nav-item-login-mobile {
     display: none;
 }
 
@@ -380,6 +354,7 @@ nav ul li a:focus { /* Adicionado estilo de foco */
     cursor: pointer;
     font-size: 1.5rem; /* Ajusta o tamanho do ícone */
     transition: color 0.3s ease;
+    overflow: visible;
 }
 
 .btn-carrinho:hover {
@@ -392,20 +367,26 @@ nav ul li a:focus { /* Adicionado estilo de foco */
 /* --- Estilos para o Contador de Itens no Carrinho (Mantém como está) --- */
 .contador-carrinho {
     position: absolute;
-    top: -8px;
-    right: -8px;
+    top: -2px;
+    right: 0px;
     background-color: #e63946;
-    color: white;
-    font-size: 0.7em;
-    font-weight: bold;
-    border-radius: 50%;
-    padding: 3px 6px;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0;
     min-width: 18px;
-    text-align: center;
-    line-height: 1.2;
-    display: none;
-    border: 1px solid white;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 10;
 }
+
 
 /* Opcional: Estilo de animação para o contador (pequeno "bounce") */
 .contador-carrinho.animar {
@@ -607,249 +588,189 @@ header .logo {
 
 /* --- Estilos da Seção Hero --- */
 .hero {
-    /* Define a altura da seção hero */
-    min-height: 400px; /* Ou ajuste conforme necessário */
-    height: 100vh; /* Faz com que ocupe a altura total da viewport, ou use um valor fixo em pixels */
+    min-height: 100vh;
     display: flex;
-    align-items: center; /* Centraliza o conteúdo verticalmente */
-    justify-content: flex-start; /* Alinha o conteúdo à esquerda */
-    padding: 0 20px; /* Adiciona algum preenchimento horizontal */
-    /* --- ESTILOS DA IMAGEM DE FUNDO --- */
-    background-image: url('../assets/imagens/hamburguer.jpeg'); /* Caminho para sua imagem */
-    background-size: cover; /* Garante que a imagem cubra toda a área */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Impede que a imagem se repita */
-    /* Opcional: Adicione uma sobreposição para melhor legibilidade do texto */
-    background-blend-mode: overlay; /* Mistura a imagem com uma cor (se você definir background-color) */
-    background-color: rgba(0, 0, 0, 0.6); /* Sobreposição mais escura para contraste do texto */
-    margin-bottom: 1rem;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('../assets/imagens/hamburguer.jpeg');
+    background-size: cover;
+    background-position: center;
 }
 
-
-/* Opcional: Ajuste o conteúdo dentro do hero para melhor legibilidade */
-.hero .container { /* Adicionando estilos diretamente ao .container dentro do .hero */
-    display: flex; /* Transforma o container em um container flex */
-    justify-content: flex-start; /* Alinha o conteúdo interno do container à esquerda */
-    width: 100%; /* Garante que o container ocupe a largura total disponível no hero */
-    max-width: 1200px; /* Mantém a largura máxima padrão */
-    padding: 0 20px; /* Garante padding interno para o container, se não estiver definido globalmente */
+.hero .container {
+    display: flex;
+    align-items: center;
 }
 
-/* Opcional: Ajuste o conteúdo dentro do hero para melhor legibilidade */
 .hero .left-content {
-    max-width: 600px; /* Limita a largura do texto */
-    color: #fff; /* Deixa o texto branco para melhor contraste em um fundo escuro */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra sutil no texto */
-    z-index: 1; /* Garante que o conteúdo esteja acima de quaisquer sobreposições potenciais */
+    max-width: 620px;
+    color: #fff;
 }
 
 .hero h1 {
-    font-size: 4em; /* Título maior */
-    margin-bottom: 20px;
-    font-family: 'Luckiest Guy', cursive; /* Assumindo que você quer esta fonte aqui */
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 16px;
 }
 
 .hero h1 span {
-    color: #e63946; /* Cor de destaque para "Melhor" */
+    color: #e63946;
 }
 
 .hero p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    line-height: 1.5;
-    font-family: 'Montserrat', sans-serif; /* Assumindo que você quer esta fonte aqui */
+    font-size: 1.15rem;
+    margin-bottom: 32px;
+    color: #f1f1f1;
 }
 
 .hero .btn {
-    display: inline-block;
-    background-color: #e63946;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 5px;
+    background: #e63946;
+    color: #fff;
+    padding: 14px 36px;
+    border-radius: 10px;
+    font-weight: 600;
     text-decoration: none;
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Adicione transform para um leve zoom */
+    transition: all 0.25s ease;
 }
 
 .hero .btn:hover {
-    background-color: #c0303e;
-    transform: translateY(-2px); /* Leve movimento para cima no hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra no hover */
+    background: #c5303b;
+    transform: translateY(-3px);
 }
 
 /* --- Seção de Destaques do Cardápio --- */
 .destaques-cardapio {
-    padding: 80px 0; /* Espaçamento superior e inferior */
-    background-color: #f8f8f8; /* Um fundo claro para a seção */
-    text-align: center; /* Centraliza o título e subtítulo */
+    padding: 80px 0;
+    background: #fafafa;
 }
 
 .destaques-cardapio h2 {
-    font-size: 3em;
-    margin-bottom: 15px;
-    color: #333;
-    font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 8px;
 }
 
 .destaques-cardapio h2 span {
-    color: #e63946; /* Cor de destaque para a palavra "Destaques" */
+    color: #e63946;
 }
 
 .destaques-cardapio .subtitulo {
-    font-size: 1.1em;
+    text-align: center;
     color: #666;
-    max-width: 700px;
-    margin: 0 auto 50px auto; /* Centraliza e adiciona margem inferior */
-    line-height: 1.6;
+    margin-bottom: 48px;
 }
 
 .destaques-grid {
-    display: grid; /* Usa CSS Grid para o layout */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas responsivas */
-    gap: 30px; /* Espaçamento entre os itens */
-    max-width: 1200px; /* Limita a largura do grid */
-    margin: 0 auto; /* Centraliza o grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
 }
 
 .destaque-item {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .destaque-item:hover {
-    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.12);
 }
 
 .destaque-item img {
-    max-width: 100%;
-    height: 200px; /* Altura fixa para as imagens */
-    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
-    border-radius: 8px;
-    margin-bottom: 20px;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
 }
 
 .destaque-item h3 {
-    font-size: 1.8em;
-    color: #333;
-    margin-bottom: 10px;
     font-family: 'Luckiest Guy', cursive;
+    font-size: 1.6rem;
+    margin: 16px 0 8px;
+    display: flex;
+    justify-content: center;
 }
 
 .destaque-item p {
-    font-size: 0.95em;
+    font-size: 0.95rem;
     color: #555;
-    margin-bottom: 15px;
-    line-height: 1.4;
 }
 
 .destaque-item .preco {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #e63946; /* Cor do preço */
-    margin-bottom: 20px;
-    display: block; /* Para o margin-bottom funcionar */
+    font-size: 1.4rem;
+    color: #e63946;
+    font-weight: 700;
+    margin: 12px 0;
+    display: flex;
+    justify-content: center;
 }
 
-.destaque-item .btn-adicionar-carrinho {
-    background-color: #e63946; /* Mesma cor dos destaques ou hero */
-    color: white;
-    padding: 15px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 0.9em;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    display: inline-block; /* Para o padding funcionar */
-    margin-top: 20px; /* Espaçamento acima do botão */
-    font-family: 'Montserrat', sans-serif;
+.btn-adicionar-carrinho {
+    margin-top: auto;
+    background: #e63946;
+    color: #fff;
     border: none;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Adicione transform para um leve zoom */
-
+    padding: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    width: 90%;
 }
 
-.destaque-item .btn-adicionar-carrinho:hover {
-    background-color: #c0303e;
-    transform: translateY(-2px); /* Leve movimento para cima no hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra no hover */
+.btn-adicionar-carrinho:hover {
+    background: #c5303b;
+    transform: scale(1.03);
 }
 
 /* --- Seção Sobre Nós --- */
 .sobre-nos {
-    padding: 80px 0;
-    background-color: #fff; /* Fundo branco ou claro */
-}
-
-.sobre-nos .container {
-    max-width: 1200px; /* Alinha com o container principal */
-    margin: 0 auto;
-    padding: 0 20px;
+    padding: 90px 0;
+    background: #fff;
 }
 
 .sobre-nos-conteudo {
-    display: flex;
-    align-items: center; /* Alinha verticalmente texto e imagem */
-    gap: 50px; /* Espaço entre o texto e a imagem */
-}
-
-.sobre-nos-texto {
-    flex: 1; /* Ocupa o espaço disponível */
-    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
 }
 
 .sobre-nos-texto h2 {
-    font-size: 3em;
-    margin-bottom: 15px;
-    color: #333;
-    font-family: 'Luckiest Guy', cursive;
+    font-size: 2.6rem;
+    margin-bottom: 12px;
 }
 
 .sobre-nos-texto h2 span {
-    color: #e63946; /* Cor de destaque */
+    color: #e63946;
 }
 
 .sobre-nos-texto .subtitulo {
-    font-size: 1.1em;
-    color: #666;
-    margin-bottom: 30px;
-    line-height: 1.6;
+    color: #777;
+    margin-bottom: 20px;
 }
 
 .sobre-nos-texto p {
-    font-size: 1em;
+    margin-bottom: 14px;
     color: #555;
-    margin-bottom: 20px;
-    line-height: 1.6;
 }
 
 .sobre-nos-texto .slogan {
-    font-size: 1.2em;
-    font-style: italic;
-    font-weight: bold;
-    color: #e63946; /* Cor de destaque para o slogan */
-    margin-top: 30px;
-    margin-bottom: 30px;
-    text-align: center; /* Centraliza o slogan dentro da div de texto */
-}
-
-.sobre-nos-imagem {
-    flex: 1; /* Ocupa o espaço restante */
-    display: flex;
-    justify-content: center; /* Centraliza a imagem se ela for menor que o container */
+    font-weight: 700;
+    color: #e63946;
+    margin-top: 20px;
 }
 
 .sobre-nos-imagem img {
-    max-width: 100%;
-    height: auto; /* Altura automática para manter proporção */
-    border-radius: 10px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Sombra para destacar a imagem */
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
 }
 
 /* Estilo para o botão secundário (se você ainda não tiver um) */
@@ -877,222 +798,151 @@ header .logo {
 /* --- Seção de Depoimentos --- */
 .depoimentos {
     padding: 80px 0;
-    background-color: #f0f0f0; /* Um fundo cinza claro para destacar a seção */
-    text-align: center;
+    background: #fafafa;
 }
 
 .depoimentos h2 {
-    font-size: 3em;
-    margin-bottom: 15px;
-    color: #333;
-    font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 8px;
 }
 
 .depoimentos h2 span {
-    color: #e63946; /* Cor de destaque */
+    color: #e63946;
 }
 
 .depoimentos .subtitulo {
-    font-size: 1.1em;
+    text-align: center;
     color: #666;
-    max-width: 700px;
-    margin: 0 auto 50px auto;
-    line-height: 1.6;
+    margin-bottom: 48px;
 }
 
 .depoimentos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 colunas responsivas */
-    gap: 30px; /* Espaçamento entre os depoimentos */
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
 }
 
 .depoimento-item {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    padding: 30px;
-    display: flex; /* Para alinhar o conteúdo internamente */
-    flex-direction: column; /* Conteúdo em coluna */
-    align-items: center; /* Centraliza itens na coluna */
+    background: #fff;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: all 0.25s ease;
 }
 
 .depoimento-item:hover {
-    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+    transform: translateY(-6px);
 }
 
 .depoimento-avatar {
-    width: 80px; /* Tamanho do avatar */
-    height: 80px;
-    border-radius: 50%; /* Torna a imagem redonda */
-    object-fit: cover; /* Garante que a imagem preencha o círculo */
-    margin-bottom: 20px;
-    border: 3px solid #e63946; /* Borda para o avatar */
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
 }
 
 .depoimento-texto {
-    font-size: 1em;
-    color: #444;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    font-style: italic; /* Depoimento em itálico */
+    font-style: italic;
+    color: #555;
+    margin-bottom: 12px;
 }
 
 .depoimento-autor {
-    font-size: 0.95em;
-    font-weight: bold;
-    color: #e63946; /* Cor para o nome do autor */
-    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
 }
 
 .depoimento-estrelas {
-    color: #FFD700; /* Cor dourada para as estrelas */
-    font-size: 1.2em;
-}
-
-.depoimento-estrelas .fas {
-    margin: 0 2px; /* Espaçamento entre as estrelas */
+    margin-top: 8px;
+    color: #f4c430;
 }
 
 /* --- Seção de Chamada para Ação (CTA) --- */
 .cta-section {
-    padding: 80px 0;
-    background-color: #f8f8f8; /* Um fundo claro ou neutro */
+    padding: 90px 0;
+    background: linear-gradient(135deg, #e63946, #c5303b);
+    color: #fff;
     text-align: center;
 }
 
 .cta-section h2 {
-    font-size: 3em;
-    margin-bottom: 15px;
-    color: #333;
-    font-family: 'Luckiest Guy', cursive;
+    font-size: 2.6rem;
+    margin-bottom: 12px;
 }
 
 .cta-section h2 span {
-    color: #e63946; /* Cor de destaque */
+    color: #ffddc1;
 }
 
 .cta-section .subtitulo {
-    font-size: 1.1em;
-    color: #666;
-    max-width: 700px;
-    margin: 0 auto 50px auto;
-    line-height: 1.6;
+    margin-bottom: 48px;
+    color: #ffecec;
 }
 
 .cta-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 colunas responsivas */
-    gap: 30px; /* Espaçamento entre os itens CTA */
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
 }
 
 .cta-item {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255,255,255,0.12);
+    padding: 32px;
+    border-radius: 18px;
+    backdrop-filter: blur(4px);
+    transition: all 0.25s ease;
 }
 
 .cta-item:hover {
-    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.18);
 }
 
-.cta-item .fas {
-    color: #e63946; /* Cor dos ícones */
-    margin-bottom: 20px;
-    font-size: 3em; /* Tamanho dos ícones (fa-3x já faz isso, mas aqui para garantir) */
+.cta-item i {
+    margin-bottom: 12px;
 }
 
 .cta-item h3 {
-    font-size: 1.8em;
-    color: #333;
     margin-bottom: 10px;
-    font-family: 'Luckiest Guy', cursive;
 }
 
 .cta-item p {
-    font-size: 0.95em;
-    color: #555;
-    margin-bottom: 25px;
-    line-height: 1.4;
+    margin-bottom: 16px;
 }
 
-/* Os botões .btn e .btn-secundario já devem ter estilos definidos */
-.cta-item .btn { /* Direciona o botão que está dentro do cta-item */
-    background-color: #e63946; /* Um azul amigável, ou outra cor de sua preferência */
-    color: white;
-    padding: 15px 30px;
-    border-radius: 5px;
+.cta-item .btn {
+    background: #fff;
+    color: #e63946;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
     text-decoration: none;
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
-    border: none;
-    font-family: 'Montserrat', sans-serif; /* Usando Montserrat para o texto do botão */
-    display: inline-block;
-    text-align: center;
-    width: 100%; /* Para ocupar a largura do item */
-    max-width: 200px; /* Para limitar o tamanho máximo */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Adicione transform para um leve zoom */
+    transition: all 0.2s ease;
 }
 
 .cta-item .btn:hover {
-    background-color: #c0303e; /* Azul mais escuro no hover */
-    transform: translateY(-2px);
-    transform: translateY(-2px); /* Leve movimento para cima no hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra no hover */
-}
-
-/* Você pode adicionar estilos específicos aqui se quiser um visual diferente para os botões do CTA */
-.cta-item .btn {
-    width: 100%; /* Faz o botão ocupar toda a largura disponível no item */
-    max-width: 200px; /* Limita a largura do botão */
+    background: #ffecec;
 }
 
 /* --- Seção de Reservas --- */
 .reservas-section {
-    background-color: #f8f8f8; /* Fundo claro para a seção */
-    padding: 80px 0;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    padding: 90px 0;
+    background: #fff;
 }
 
 .reservas-conteudo {
-    display: flex;
-    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
-    justify-content: center;
-    align-items: flex-start; /* Alinha o conteúdo ao topo */
-    gap: 50px; /* Espaço entre o texto e o formulário */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.reservas-texto {
-    flex: 1; /* Ocupa espaço flexível */
-    min-width: 300px; /* Largura mínima para o texto */
-    text-align: left;
-    padding-right: 20px; /* Espaço entre o texto e o formulário */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
 }
 
 .reservas-texto h2 {
-    font-size: 3.5em;
-    color: #333;
-    margin-bottom: 20px;
-    font-family: 'Luckiest Guy', cursive;
-    text-align: left; /* Alinha o título à esquerda */
+    font-size: 2.6rem;
+    margin-bottom: 12px;
 }
 
 .reservas-texto h2 span {
@@ -1100,113 +950,66 @@ header .logo {
 }
 
 .reservas-texto p {
-    font-size: 1.1em;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.reservas-contato-info {
-    margin-top: 30px;
-    border-top: 1px solid #eee;
-    padding-top: 20px;
-}
-
-.reservas-contato-info p {
-    font-size: 1em;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: #555;
 }
 
-.reservas-contato-info p .fas {
-    color: #e63946;
-    margin-right: 10px;
+.reservas-contato-info p {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
 }
 
-
 .reservas-formulario {
-    flex: 1; /* Ocupa espaço flexível */
-    min-width: 350px; /* Largura mínima para o formulário */
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Alinha os campos do formulário à esquerda */
+    background: #fafafa;
+    padding: 32px;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
 }
 
 .form-grupo {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
 }
 
 .form-grupo label {
-    display: block; /* Cada label em sua própria linha */
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8px;
-    font-size: 0.95em;
+    font-weight: 600;
+    margin-bottom: 4px;
 }
 
-.form-grupo input[type="text"],
-.form-grupo input[type="email"],
-.form-grupo input[type="tel"],
-.form-grupo input[type="date"],
-.form-grupo input[type="time"],
+.form-grupo input,
 .form-grupo select,
 .form-grupo textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1em;
-    color: #333;
-    box-sizing: border-box; /* Garante que padding não aumente a largura */
-    font-family: 'Montserrat', sans-serif;
-    transition: border-color 0.3s ease;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 0.95rem;
 }
 
 .form-grupo input:focus,
 .form-grupo select:focus,
 .form-grupo textarea:focus {
-    border-color: #e63946; /* Borda vermelha no foco */
-    outline: none; /* Remove o outline padrão do navegador */
+    border-color: #e63946;
 }
 
-.form-grupo select {
-    /* Estilos para o select para que ele se pareça mais com os inputs */
-    appearance: none; /* Remove a seta padrão em alguns navegadores */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20512%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M192%20256L64%20128v256z%22%2F%3E%3C%2Fsvg%3E'); /* Seta customizada */
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-    padding-right: 30px; /* Espaço para a seta */
+.btn-primary-alt {
+    background: #e63946;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.reservas-formulario button[type="submit"] {
-        width: 100%;
-        padding: 15px;
-        font-size: 1.2em;
-        font-weight: bold;
-        background-color: #e63946;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        font-family: 'Montserrat', sans-serif;
-        /* --- As linhas abaixo são as que centralizam o botão --- */
-        display: block; /* Mude de inline-block para block para que margin: auto funcione */
-        margin: 20px auto 0 auto; /* Centraliza horizontalmente e adiciona margem superior */
-        max-width: 280px; /* Ajuste o max-width para o tamanho que você quer que o botão tenha */
-        /* --- Fim das linhas de centralização --- */
-    }
-
-    .reservas-formulario button[type="submit"]:hover {
-        background-color: #c0303e;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+.btn-primary-alt:hover {
+    background: #c5303b;
+}
 
 /* Mensagens de Sucesso/Erro */
 .mensagem-reserva {
@@ -1243,7 +1046,6 @@ footer {
 
 .footer-grid {
     display: grid;
-    /* Colunas responsivas: 1fr para cada coluna, mínimo de 200px */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 30px; /* Espaço entre as colunas */
     max-width: 1200px;
@@ -1326,6 +1128,37 @@ footer {
     color: #e63946; /* Cor de destaque no hover */
 }
 
+.btn,
+.btn-secundario,
+.btn-adicionar-carrinho,
+.btn-finalizar-pedido {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:active,
+.btn-secundario:active,
+.btn-adicionar-carrinho:active {
+    transform: scale(0.97);
+}
+
+
+.destaque-item,
+.depoimento-item,
+.cta-item {
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.destaque-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+.depoimento-item:hover,
+.cta-item:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
 .footer-bottom {
     text-align: center;
     margin-top: 40px; /* Espaço entre o grid e o texto inferior */
@@ -1355,14 +1188,73 @@ footer {
 /* --- Animações ao Rolar (Scroll Reveal) --- */
 .js-scroll {
     opacity: 0; /* Esconde a seção por padrão */
-    transform: translateY(20px); /* Move ligeiramente para baixo */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transição suave */
+    transform: translateY(30px); /* Move ligeiramente para baixo */
+    transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
 .js-scroll.animated {
     opacity: 1; /* Torna visível */
     transform: translateY(0); /* Volta à posição original */
 }
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* === HERO PREMIUM MICRO-UX === */
+
+.hero h1 {
+    animation: heroFadeUp 0.9s ease forwards;
+}
+
+.hero p {
+    animation: heroFadeUp 1.1s ease forwards;
+}
+
+.hero .btn {
+    animation: heroFadeUp 1.3s ease forwards;
+}
+
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.toast-carrinho {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #333;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.toast-carrinho.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 
 
@@ -1406,6 +1298,17 @@ footer {
 
     .reservas-contato-info {
         text-align: center; /* Centraliza as informações de contato */
+    }
+}
+
+@media (max-width: 900px) {
+    .sobre-nos-conteudo,
+    .reservas-conteudo {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
     }
 }
 
@@ -1518,6 +1421,8 @@ footer {
         align-items: center;
         width: 100%;
         display: flex; /* Mostra quando a navegação mobile está aberta */
+        background-color: #ffffff;
+        margin-top: 60px;
     }
 
     nav ul li {
@@ -1742,5 +1647,15 @@ footer {
     
     .social-icons a {
         margin: 0 10px 10px; /* Ajusta margem dos ícones em mobile */
+    }
+}
+
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
     }
 }

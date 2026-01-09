@@ -27,9 +27,6 @@
                     <li><a href="index.html#sobre-nos">Sobre Nós</a></li>
                     <li><a href="index.html#reservas">Reservas</a></li>
                     <li><a href="index.html#contato">Contato</a></li>
-                    <li class="nav-item-login-mobile">
-                        <a href="#" class="btn btn-login-mobile" id="btnCabecalhoLoginMobile">Login</a>
-                    </li>
                 </ul>
             </nav>
 
@@ -173,12 +170,65 @@
         <div class="checkout-conteudo">
             <h2>Confirmar Pedido</h2>
 
-            <div id="checkoutItens"></div>
+            <div id="checkoutItens" class="checkout-itens"></div>
 
-                <p class="checkout-total">Total: <strong id="checkoutTotal"></strong></p>
+            <p class="checkout-total">
+            Total: <strong id="checkoutTotal"></strong>
+            </p>
 
-                <div class="checkout-acoes">
-                <button class="btn btn-confirmar-pedido">Confirmar</button>
+            <div class="checkout-tipo-entrega">
+                <h3>Tipo de pedido</h3>
+
+                <label>
+                    <input type="radio" name="tipoEntrega" value="Entrega" checked>
+                    Entrega
+                </label>
+
+                <label>
+                    <input type="radio" name="tipoEntrega" value="Retirada">
+                    Retirada no local
+                </label>
+            </div>
+
+            <div class="checkout-endereco" id="campoEndereco">
+                <h3>Endereço de entrega</h3>
+                <input 
+                    type="text" 
+                    id="inputEndereco" 
+                    placeholder="Rua, número, bairro..."
+                >
+            </div>
+
+            <div class="checkout-observacoes">
+                <h3>Observações</h3>
+                <textarea 
+                    id="inputObservacoes" 
+                    rows="3" 
+                    placeholder="Ex: sem cebola, ponto da carne, referência..."
+                ></textarea>
+            </div>
+
+            <div class="checkout-pagamento">
+                <h3>Forma de pagamento</h3>
+
+                <label>
+                    <input type="radio" name="formaPagamento" value="Pix" checked>
+                    Pix
+                </label>
+
+                <label>
+                    <input type="radio" name="formaPagamento" value="Cartão">
+                    Cartão
+                </label>
+
+                <label>
+                    <input type="radio" name="formaPagamento" value="Dinheiro">
+                    Dinheiro
+                </label>
+            </div>
+
+            <div class="checkout-acoes">
+                <button class="btn btn-confirmar-pedido">Confirmar pedido</button>
                 <button class="btn btn-cancelar-pedido">Cancelar</button>
             </div>
         </div>
